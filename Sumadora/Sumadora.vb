@@ -29,7 +29,12 @@
 #End Region
 #Region "Operaciones"
     Private Sub cbDividir_Click(sender As Object, e As EventArgs) Handles cbDividir.Click
+        Static Valor As Integer = 0
+        dgvHistorial.Rows.Add()
+        dgvHistorial(0, Valor).Value = "456.00"
+        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
 
+        Valor += 1
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
