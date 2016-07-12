@@ -99,4 +99,12 @@
     End Sub
 
 #End Region
+
+    Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress
+        MsgBox(Chr(e.KeyChar).ToString)
+    End Sub
+
+    Private Sub tbResultado_TextChanged(sender As Object, e As EventArgs) Handles tbResultado.TextChanged
+
+    End Sub
 End Class
