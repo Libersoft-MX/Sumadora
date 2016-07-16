@@ -2,20 +2,44 @@
 
 #Region "Variables Globales"
 
-    Public Total As Decimal = 0
-    Public Antes As Decimal = 0
-    Public Operación As String = ""
+    Private Total As Decimal = 0
+    Private Cantidad As String
+    Private Punto As Boolean = False
+    Private Operacion As Char = ""
 
 #End Region
-    
+
+#Region "Elementos de Formulario Eventos"
+    Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress
+
+        Analizador(ValidadorNumero(e).KeyChar)
+    End Sub
+#End Region
+
 #Region "Motor"
 
     Private Sub Analizador(ByVal Valor As String)
 
     End Sub
 
+    Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
+
+
+        If (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57) Then
+            Valor.KeyChar = ""
+        End If
+
+
+        Return Valor
+    End Function
+
+    Private Sub NewOperation(Optional ByVal Valor As String = "")
+        Operacion = Valor
+        Punto = False
+    End Sub
+
 #End Region
-   
+
 #Region "Carga"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -27,6 +51,7 @@
     End Sub
 
 #End Region
+
 #Region "Operaciones"
     Private Sub cbDividir_Click(sender As Object, e As EventArgs) Handles cbDividir.Click
         Static Valor As Integer = 0
@@ -35,24 +60,27 @@
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
 
         Valor += 1
+
+        NewOperation("/")
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
-
+        NewOperation("X")
     End Sub
 
     Private Sub cbMenos_Click(sender As Object, e As EventArgs) Handles cbMenos.Click
-
+        NewOperation("-")
     End Sub
 
     Private Sub cbIgual_Click(sender As Object, e As EventArgs) Handles cbIgual.Click
-
+        NewOperation("=")
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
-
+        NewOperation("+")
     End Sub
 #End Region
+
 #Region "Números"
     Private Sub cb0_Click(sender As Object, e As EventArgs) Handles cb0.Click
         Analizador("0")
@@ -100,11 +128,4 @@
 
 #End Region
 
-    Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress
-        MsgBox(Chr(e.KeyChar).ToString)
-    End Sub
-
-    Private Sub tbResultado_TextChanged(sender As Object, e As EventArgs) Handles tbResultado.TextChanged
-
-    End Sub
 End Class

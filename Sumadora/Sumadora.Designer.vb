@@ -399,7 +399,6 @@ Partial Class Sumadora
         Me.Name = "Sumadora"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GEP Calculator"
-        Me.TopMost = True
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).EndInit()
