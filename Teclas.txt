@@ -1,0 +1,8 @@
+ASCII VB.NET
+
+ASCII		NOMBRE
+
+13		Enter
+8		Retroceso
+Espacio		32
+https://drive.google.com/folderview?id=0Bzp7__S3IgPUfmRuLXJUWnlOS1c2bmZZSkxucWhybXRUVDVPdFo0OUt4dDYyNDZsaHpKQWs&usp=drive_web
