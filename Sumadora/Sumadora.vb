@@ -3,9 +3,10 @@
 #Region "Variables Globales"
 
     Private Total As Decimal = 0
-    Private Cantidad As String
-    Private Punto As Boolean = False
-    Private Operacion As Char = ""
+    Private Cantidad As String              'Especifica el valor de la primera cantidad ingresada antes de la operación
+    Private Punto As Boolean = False        'Especifica si ya se ha precionado la tecla punto
+    Private OpeAct As Boolean = False       'Especifica si ya se ha seleccionado una operacion
+    Private Operacion As Char = ""          'Especifica que operación se ha seleccionado
 
 #End Region
 
@@ -24,18 +25,42 @@
 
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
 
-
-        If (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57) Then
+        If Asc(Valor.KeyChar) = 8 Then
+            Return Valor
+        ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
             Valor.KeyChar = ""
+        ElseIf Asc(Valor.KeyChar) = 42 Then
+            OpeAct = True
+            Operacion = "x"
+            Valor.KeyChar = ""
+        ElseIf Asc(Valor.KeyChar) = 43 Then
+            Operacion = "+"
+            Valor.KeyChar = ""
+        ElseIf Asc(Valor.KeyChar) = 45 Then
+            Operacion = "-"
+            Valor.KeyChar = ""
+        ElseIf Asc(Valor.KeyChar) = 47 Then
+            Operacion = "/"
+            Valor.KeyChar = ""
+
+
+        ElseIf Asc(Valor.KeyChar) = 46 Then
+            If Not Punto Then
+                Punto = True
+            Else
+                Valor.KeyChar = ""
+            End If
+        ElseIf OpeAct Then
+            tbResultado.Text = ""
         End If
 
 
         Return Valor
     End Function
 
-    Private Sub NewOperation(Optional ByVal Valor As String = "")
-        Operacion = Valor
+    Private Sub NewOperation()
         Punto = False
+
     End Sub
 
 #End Region
@@ -61,23 +86,23 @@
 
         Valor += 1
 
-        NewOperation("/")
+
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
-        NewOperation("X")
+
     End Sub
 
     Private Sub cbMenos_Click(sender As Object, e As EventArgs) Handles cbMenos.Click
-        NewOperation("-")
+
     End Sub
 
     Private Sub cbIgual_Click(sender As Object, e As EventArgs) Handles cbIgual.Click
-        NewOperation("=")
+
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
-        NewOperation("+")
+
     End Sub
 #End Region
 

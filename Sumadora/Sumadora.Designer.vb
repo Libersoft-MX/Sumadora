@@ -52,6 +52,7 @@ Partial Class Sumadora
         Me.cb8 = New System.Windows.Forms.Button()
         Me.cb7 = New System.Windows.Forms.Button()
         Me.tbResultado = New System.Windows.Forms.TextBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +132,7 @@ Partial Class Sumadora
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel2.Controls.Add(Me.CheckBox3)
         Me.Panel2.Controls.Add(Me.CheckBox2)
         Me.Panel2.Controls.Add(Me.CheckBox1)
         Me.Panel2.Controls.Add(Me.Button2)
@@ -163,9 +165,9 @@ Partial Class Sumadora
         Me.CheckBox2.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox2.Location = New System.Drawing.Point(229, 98)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(89, 28)
+        Me.CheckBox2.Size = New System.Drawing.Size(76, 28)
         Me.CheckBox2.TabIndex = 38
-        Me.CheckBox2.Text = "LOGO"
+        Me.CheckBox2.Text = "Logo"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -174,9 +176,9 @@ Partial Class Sumadora
         Me.CheckBox1.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox1.Location = New System.Drawing.Point(352, 98)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(90, 28)
+        Me.CheckBox1.Size = New System.Drawing.Size(72, 28)
         Me.CheckBox1.TabIndex = 37
-        Me.CheckBox1.Text = "PRINT"
+        Me.CheckBox1.Text = "Print"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -383,6 +385,17 @@ Partial Class Sumadora
         Me.tbResultado.TabIndex = 18
         Me.tbResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox3.Location = New System.Drawing.Point(83, 98)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(88, 28)
+        Me.CheckBox3.TabIndex = 39
+        Me.CheckBox3.Text = "Fecha"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
         'Sumadora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(38.0!, 72.0!)
@@ -434,5 +447,6 @@ Partial Class Sumadora
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents dgvHistorial As System.Windows.Forms.DataGridView
     Friend WithEvents Datos As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
 
 End Class
