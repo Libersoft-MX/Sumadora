@@ -43,29 +43,45 @@
             '//////////////////////////////////////////////////////////////////////////////////////////////
         ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
             If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                Total = Total * Val(tbResultado.Text)                                               'Realizar calculo
-                tbResultado.Text = Total
+                If Total = 0 Then
+                    Total = Val(tbResultado.Text)
+                Else
+                    Total = Total * Val(tbResultado.Text)                                               'Realizar calculo
+                    tbResultado.Text = Total
+                End If
                 OpeAct = True
             End If
             Valor.KeyChar = ""
         ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
             If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
-                tbResultado.Text = Total
+                If Total = 0 Then
+                    Total = Val(tbResultado.Text)
+                Else
+                    Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
+                    tbResultado.Text = Total
+                End If
                 OpeAct = True
             End If
             Valor.KeyChar = ""
         ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
             If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                Total = Total - Val(tbResultado.Text)                                               'Realizar calculo
-                tbResultado.Text = Total
+                If Total = 0 Then
+                    Total = Val(tbResultado.Text)
+                Else
+                    Total = Total - Val(tbResultado.Text)                                               'Realizar calculo
+                    tbResultado.Text = Total
+                End If
                 OpeAct = True
             End If
             Valor.KeyChar = ""
         ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
             If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                Total = Total / Val(tbResultado.Text)                                               'Realizar calculo
-                tbResultado.Text = Total
+                If Total = 0 Then
+                    Total = Val(tbResultado.Text)
+                Else
+                    Total = Total / Val(tbResultado.Text)                                               'Realizar calculo
+                    tbResultado.Text = Total
+                End If
                 OpeAct = True
             End If
             Valor.KeyChar = ""
