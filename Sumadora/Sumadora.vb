@@ -2,11 +2,14 @@
 
 #Region "Variables Globales"
 
-    Private Total As Decimal = 0
-    Private Cantidad As String              'Especifica el valor de la primera cantidad ingresada antes de la operación
+    Private Total As Decimal = 0            'Especifica el total de la las operaciones hasta el ommento
+    'Private Cantidad As String              'Especifica el valor de la primera cantidad ingresada antes de la operación
+    'Private CantidadAct As Boolean = False  'Especifica si ya esta almacenada la primera cantidad de la operación
     Private Punto As Boolean = False        'Especifica si ya se ha precionado la tecla punto
+    'Private Operacion As Char = ""          'Especifica que operación se ha seleccionado
     Private OpeAct As Boolean = False       'Especifica si ya se ha seleccionado una operacion
-    Private Operacion As Char = ""          'Especifica que operación se ha seleccionado
+    'Private OpeStart As Boolean = False     'Especifica si se inicio arbol de operaciones
+    'Private OpeEnd As Boolean = False       'Especifica si ya se realizó el calculo
 
 #End Region
 
@@ -25,42 +28,78 @@
 
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
 
-        If Asc(Valor.KeyChar) = 8 Then
+        If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             Return Valor
+        ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
+            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+                Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
+                tbResultado.Text = Total
+                OpeAct = True
+                Total = 0
+            End If
+            Valor.KeyChar = ""
         ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
             Valor.KeyChar = ""
-        ElseIf Asc(Valor.KeyChar) = 42 Then
-            OpeAct = True
-            Operacion = "x"
+            '//////////////////////////////////////////////////////////////////////////////////////////////
+        ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
+            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+                Total = Total * Val(tbResultado.Text)                                               'Realizar calculo
+                tbResultado.Text = Total
+                OpeAct = True
+            End If
             Valor.KeyChar = ""
-        ElseIf Asc(Valor.KeyChar) = 43 Then
-            Operacion = "+"
+        ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
+            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+                Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
+                tbResultado.Text = Total
+                OpeAct = True
+            End If
             Valor.KeyChar = ""
-        ElseIf Asc(Valor.KeyChar) = 45 Then
-            Operacion = "-"
+        ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
+            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+                Total = Total - Val(tbResultado.Text)                                               'Realizar calculo
+                tbResultado.Text = Total
+                OpeAct = True
+            End If
             Valor.KeyChar = ""
-        ElseIf Asc(Valor.KeyChar) = 47 Then
-            Operacion = "/"
+        ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
+            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+                Total = Total / Val(tbResultado.Text)                                               'Realizar calculo
+                tbResultado.Text = Total
+                OpeAct = True
+            End If
             Valor.KeyChar = ""
-
-
-        ElseIf Asc(Valor.KeyChar) = 46 Then
+        ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
             If Not Punto Then
                 Punto = True
+                If OpeAct Then
+                    tbResultado.Text = ""
+                    OpeAct = False
+                End If
             Else
                 Valor.KeyChar = ""
             End If
         ElseIf OpeAct Then
             tbResultado.Text = ""
+            OpeAct = False
         End If
-
-
+        '//////////////////////////////////////////////////////////////////////////////////////////////////
+        'MsgBox(Total & " Valor textB: " & Val(tbResultado.Text))
         Return Valor
     End Function
 
     Private Sub NewOperation()
         Punto = False
+        OpeAct = False
+        Total = 0
+        tbResultado.Text = ""
+        tbResultado.Focus()
+        'CantidadAct = False
 
+    End Sub
+
+    Private Sub RealizarCalculo()
+        MsgBox("Calculo realizado!")
     End Sub
 
 #End Region
@@ -153,4 +192,7 @@
 
 #End Region
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        NewOperation()
+    End Sub
 End Class
