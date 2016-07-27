@@ -2,89 +2,55 @@
 
 #Region "Variables Globales"
 
-    Private Total As Decimal = 0            'Especifica el total de la las operaciones hasta el ommento
-    'Private Cantidad As String              'Especifica el valor de la primera cantidad ingresada antes de la operación
-    'Private CantidadAct As Boolean = False  'Especifica si ya esta almacenada la primera cantidad de la operación
-    Private Punto As Boolean = False        'Especifica si ya se ha precionado la tecla punto
-    'Private Operacion As Char = ""          'Especifica que operación se ha seleccionado
-    Private OpeAct As Boolean = False       'Especifica si ya se ha seleccionado una operacion
-    'Private OpeStart As Boolean = False     'Especifica si se inicio arbol de operaciones
-    'Private OpeEnd As Boolean = False       'Especifica si ya se realizó el calculo
+    '// Variables para calculo de operaciones //////////////////////////////////////////////////////////|
+    Private Total As Decimal = 0            'Especifica el total de la las operaciones hasta el ommento |
+    Private Punto As Boolean = False        'Especifica si ya se ha precionado la tecla punto           |
+    Private Operacion As Char = "0"         'Especifica que operación se ha seleccionado                |
+    Private OpeAct As Boolean = False       'Especifica si ya se ha seleccionado una operacion          |
+    Private OpeEnd As Boolean = True        'Especifica si ya se realizó el calculo                     |
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
+    '// Variables usados en manipulación de tabla //////////////////////////////////////////////////////|
+    Private NumFilas As Integer = 3         'Especifica el número de filas actuales de la tabla         |
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 #End Region
 
-#Region "Elementos de Formulario Eventos"
-    Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress
 
-        Analizador(ValidadorNumero(e).KeyChar)
-    End Sub
-#End Region
 
-#Region "Motor"
-
-    Private Sub Analizador(ByVal Valor As String)
-
-    End Sub
-
+#Region "Motor KeyPress"
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
 
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
+            If OpeEnd Then
+                tbResultado.Text = ""
+            End If
             Return Valor
         ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
-            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
-                tbResultado.Text = Total
+            If Operacion = "0" Then
+                Valor.KeyChar = ""
+            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then
+                Valor = RealizarCalculo(Valor)
+                OpeEnd = True
                 OpeAct = True
+                Operacion = "0"
                 Total = 0
+            Else
+                Valor.KeyChar = ""
             End If
-            Valor.KeyChar = ""
         ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
             Valor.KeyChar = ""
-            '//////////////////////////////////////////////////////////////////////////////////////////////
         ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
-            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                If Total = 0 Then
-                    Total = Val(tbResultado.Text)
-                Else
-                    Total = Total * Val(tbResultado.Text)                                               'Realizar calculo
-                    tbResultado.Text = Total
-                End If
-                OpeAct = True
-            End If
-            Valor.KeyChar = ""
+            Valor = RealizarCalculo(Valor)
+            Operacion = "x"
         ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
-            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                If Total = 0 Then
-                    Total = Val(tbResultado.Text)
-                Else
-                    Total = Total + Val(tbResultado.Text)                                               'Realizar calculo
-                    tbResultado.Text = Total
-                End If
-                OpeAct = True
-            End If
-            Valor.KeyChar = ""
+            Valor = RealizarCalculo(Valor)
+            Operacion = "+"
         ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
-            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                If Total = 0 Then
-                    Total = Val(tbResultado.Text)
-                Else
-                    Total = Total - Val(tbResultado.Text)                                               'Realizar calculo
-                    tbResultado.Text = Total
-                End If
-                OpeAct = True
-            End If
-            Valor.KeyChar = ""
+            Valor = RealizarCalculo(Valor)
+            Operacion = "-"
         ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
-            If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
-                If Total = 0 Then
-                    Total = Val(tbResultado.Text)
-                Else
-                    Total = Total / Val(tbResultado.Text)                                               'Realizar calculo
-                    tbResultado.Text = Total
-                End If
-                OpeAct = True
-            End If
-            Valor.KeyChar = ""
+            Valor = RealizarCalculo(Valor)
+            Operacion = "/"
         ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
             If Not Punto Then
                 Punto = True
@@ -98,50 +64,55 @@
         ElseIf OpeAct Then
             tbResultado.Text = ""
             OpeAct = False
+        Else
+            OpeEnd = False
+            OpeAct = False
         End If
-        '//////////////////////////////////////////////////////////////////////////////////////////////////
-        'MsgBox(Total & " Valor textB: " & Val(tbResultado.Text))
         Return Valor
     End Function
 
-    Private Sub NewOperation()
-        Punto = False
-        OpeAct = False
-        Total = 0
-        tbResultado.Text = ""
-        tbResultado.Focus()
-        'CantidadAct = False
-
-    End Sub
-
-    Private Sub RealizarCalculo()
-        MsgBox("Calculo realizado!")
-    End Sub
+    Private Function RealizarCalculo(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
+        If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
+            If Total = 0 Then
+                Total = Val(tbResultado.Text)
+            Else
+                Select Case Operacion
+                    Case "+"
+                        Total = Total + Val(tbResultado.Text)
+                    Case "-"
+                        Total = Total - Val(tbResultado.Text)
+                    Case "x"
+                        Total = Total * Val(tbResultado.Text)
+                    Case "/"
+                        Total = Total / Val(tbResultado.Text)
+                End Select
+                tbResultado.Text = Total
+            End If
+            OpeAct = True
+        End If
+        Valor.KeyChar = ""
+        Return Valor
+    End Function
+#End Region
+#Region "Motor Button"
 
 #End Region
-
-#Region "Carga"
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+#Region "Operaciones con la Tabla"
+    Private Sub Tabla()
+        Static Valor As Integer = 0
+        dgvHistorial.Rows.Add()
+        dgvHistorial(0, Valor).Value = "456.00"
+        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
+        Valor += 1
     End Sub
-
-    Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        tbResultado.Focus()
-        'tbResultado.Text = "0"
-    End Sub
-
 #End Region
-
-#Region "Operaciones"
+#Region "Botones de Operaciones"
     Private Sub cbDividir_Click(sender As Object, e As EventArgs) Handles cbDividir.Click
         Static Valor As Integer = 0
         dgvHistorial.Rows.Add()
         dgvHistorial(0, Valor).Value = "456.00"
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
-
         Valor += 1
-
-
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
@@ -153,62 +124,75 @@
     End Sub
 
     Private Sub cbIgual_Click(sender As Object, e As EventArgs) Handles cbIgual.Click
-
+        'dgvHistorial.Rows(0).Selected = False
+        'dgvHistorial.Rows(3).Selected = True
+        dgvHistorial.ClearSelection()
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
 
     End Sub
 #End Region
-
-#Region "Números"
+#Region "Botones de Números"
     Private Sub cb0_Click(sender As Object, e As EventArgs) Handles cb0.Click
-        Analizador("0")
+        tbResultado.Text = tbResultado.Text + "0"
     End Sub
 
     Private Sub cbPunto_Click(sender As Object, e As EventArgs) Handles cbPunto.Click
-        Analizador(".")
+        tbResultado.Text = tbResultado.Text + "."
     End Sub
 
     Private Sub cb1_Click(sender As Object, e As EventArgs) Handles cb1.Click
-        Analizador("1")
+        tbResultado.Text = tbResultado.Text + "1"
+
     End Sub
 
     Private Sub cb2_Click(sender As Object, e As EventArgs) Handles cb2.Click
-        Analizador("2")
+        tbResultado.Text = tbResultado.Text + "2"
     End Sub
 
     Private Sub cb3_Click(sender As Object, e As EventArgs) Handles cb3.Click
-        Analizador("3")
+        tbResultado.Text = tbResultado.Text + "3"
     End Sub
 
     Private Sub cb4_Click(sender As Object, e As EventArgs) Handles cb4.Click
-        Analizador("4")
+        tbResultado.Text = tbResultado.Text + "4"
     End Sub
 
     Private Sub cb5_Click(sender As Object, e As EventArgs) Handles cb5.Click
-        Analizador("5")
+        tbResultado.Text = tbResultado.Text + "5"
     End Sub
 
     Private Sub cb6_Click(sender As Object, e As EventArgs) Handles cb6.Click
-        Analizador("6")
+        tbResultado.Text = tbResultado.Text + "6"
     End Sub
 
     Private Sub cb7_Click(sender As Object, e As EventArgs) Handles cb7.Click
-        Analizador("7")
+        tbResultado.Text = tbResultado.Text + "7"
     End Sub
 
     Private Sub cb8_Click(sender As Object, e As EventArgs) Handles cb8.Click
-        Analizador("8")
+        tbResultado.Text = tbResultado.Text + "8"
     End Sub
 
     Private Sub cb9_Click(sender As Object, e As EventArgs) Handles cb9.Click
-        Analizador("9")
+        tbResultado.Text = tbResultado.Text + "9"
     End Sub
 
 #End Region
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        NewOperation()
+#Region "Elementos de Formulario Eventos"
+    Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress  'Tecla pulsada
+        ValidadorNumero(e)
     End Sub
+
+    Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+        dgvHistorial.Rows.Add(3)
+        dgvHistorial(0, 0).Value = "0.00"
+        dgvHistorial(0, 1).Value = "--------------------"
+        dgvHistorial(0, 2).Value = "0.00"
+
+        tbResultado.Focus()
+    End Sub
+#End Region
+
 End Class

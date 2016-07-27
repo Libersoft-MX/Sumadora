@@ -29,12 +29,12 @@ Partial Class Sumadora
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvHistorial = New System.Windows.Forms.DataGridView()
         Me.Datos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ope = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbMas = New System.Windows.Forms.Button()
         Me.cbIgual = New System.Windows.Forms.Button()
@@ -91,18 +91,18 @@ Partial Class Sumadora
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Teal
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvHistorial.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvHistorial.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Datos})
+        Me.dgvHistorial.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Datos, Me.ope})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Teal
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvHistorial.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvHistorial.GridColor = System.Drawing.Color.White
@@ -110,6 +110,7 @@ Partial Class Sumadora
         Me.dgvHistorial.Name = "dgvHistorial"
         Me.dgvHistorial.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvHistorial.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvHistorial.Size = New System.Drawing.Size(244, 339)
         Me.dgvHistorial.TabIndex = 5
         '
@@ -118,6 +119,12 @@ Partial Class Sumadora
         Me.Datos.HeaderText = "Historial"
         Me.Datos.Name = "Datos"
         Me.Datos.Width = 175
+        '
+        'ope
+        '
+        Me.ope.HeaderText = "Operación"
+        Me.ope.Name = "ope"
+        Me.ope.Visible = False
         '
         'Button3
         '
@@ -135,7 +142,6 @@ Partial Class Sumadora
         Me.Panel2.Controls.Add(Me.CheckBox3)
         Me.Panel2.Controls.Add(Me.CheckBox2)
         Me.Panel2.Controls.Add(Me.CheckBox1)
-        Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.cbMas)
         Me.Panel2.Controls.Add(Me.cbIgual)
@@ -192,16 +198,6 @@ Partial Class Sumadora
         Me.CheckBox1.Text = "Print"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(375, 403)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(80, 80)
-        Me.Button2.TabIndex = 36
-        Me.Button2.Text = "*"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -219,7 +215,7 @@ Partial Class Sumadora
         Me.cbMas.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbMas.Location = New System.Drawing.Point(375, 233)
         Me.cbMas.Name = "cbMas"
-        Me.cbMas.Size = New System.Drawing.Size(80, 164)
+        Me.cbMas.Size = New System.Drawing.Size(80, 250)
         Me.cbMas.TabIndex = 34
         Me.cbMas.Text = "+"
         Me.cbMas.UseVisualStyleBackColor = True
@@ -441,12 +437,12 @@ Partial Class Sumadora
     Friend WithEvents tbResultado As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents dgvHistorial As System.Windows.Forms.DataGridView
-    Friend WithEvents Datos As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents Datos As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ope As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
