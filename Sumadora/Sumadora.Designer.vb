@@ -32,9 +32,6 @@ Partial Class Sumadora
         Me.ope = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbMas = New System.Windows.Forms.Button()
         Me.cbIgual = New System.Windows.Forms.Button()
@@ -53,10 +50,15 @@ Partial Class Sumadora
         Me.cb8 = New System.Windows.Forms.Button()
         Me.cb7 = New System.Windows.Forms.Button()
         Me.tbResultado = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -130,7 +132,7 @@ Partial Class Sumadora
         '
         Me.Button3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.Image = Global.Sumadora.My.Resources.Resources.print
-        Me.Button3.Location = New System.Drawing.Point(58, 470)
+        Me.Button3.Location = New System.Drawing.Point(63, 470)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(82, 39)
         Me.Button3.TabIndex = 4
@@ -139,9 +141,7 @@ Partial Class Sumadora
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel2.Controls.Add(Me.CheckBox3)
-        Me.Panel2.Controls.Add(Me.CheckBox2)
-        Me.Panel2.Controls.Add(Me.CheckBox1)
+        Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.cbMas)
         Me.Panel2.Controls.Add(Me.cbIgual)
@@ -165,45 +165,12 @@ Partial Class Sumadora
         Me.Panel2.Size = New System.Drawing.Size(471, 513)
         Me.Panel2.TabIndex = 19
         '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox3.Location = New System.Drawing.Point(83, 98)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(88, 28)
-        Me.CheckBox3.TabIndex = 39
-        Me.CheckBox3.Text = "Fecha"
-        Me.CheckBox3.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(229, 98)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(76, 28)
-        Me.CheckBox2.TabIndex = 38
-        Me.CheckBox2.Text = "Logo"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox1.Location = New System.Drawing.Point(352, 98)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(72, 28)
-        Me.CheckBox1.TabIndex = 37
-        Me.CheckBox1.Text = "Print"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Button1.Font = New System.Drawing.Font("Arial", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(16, 403)
+        Me.Button1.Location = New System.Drawing.Point(16, 412)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(80, 80)
         Me.Button1.TabIndex = 35
@@ -213,7 +180,7 @@ Partial Class Sumadora
         'cbMas
         '
         Me.cbMas.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbMas.Location = New System.Drawing.Point(375, 233)
+        Me.cbMas.Location = New System.Drawing.Point(375, 242)
         Me.cbMas.Name = "cbMas"
         Me.cbMas.Size = New System.Drawing.Size(80, 250)
         Me.cbMas.TabIndex = 34
@@ -223,7 +190,7 @@ Partial Class Sumadora
         'cbIgual
         '
         Me.cbIgual.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbIgual.Location = New System.Drawing.Point(16, 231)
+        Me.cbIgual.Location = New System.Drawing.Point(16, 240)
         Me.cbIgual.Name = "cbIgual"
         Me.cbIgual.Size = New System.Drawing.Size(80, 80)
         Me.cbIgual.TabIndex = 33
@@ -234,7 +201,7 @@ Partial Class Sumadora
         '
         Me.cbPunto.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbPunto.ForeColor = System.Drawing.Color.DimGray
-        Me.cbPunto.Location = New System.Drawing.Point(280, 403)
+        Me.cbPunto.Location = New System.Drawing.Point(280, 412)
         Me.cbPunto.Name = "cbPunto"
         Me.cbPunto.Size = New System.Drawing.Size(80, 82)
         Me.cbPunto.TabIndex = 32
@@ -245,7 +212,7 @@ Partial Class Sumadora
         '
         Me.cb0.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb0.ForeColor = System.Drawing.Color.DimGray
-        Me.cb0.Location = New System.Drawing.Point(108, 403)
+        Me.cb0.Location = New System.Drawing.Point(108, 412)
         Me.cb0.Name = "cb0"
         Me.cb0.Size = New System.Drawing.Size(166, 80)
         Me.cb0.TabIndex = 31
@@ -255,7 +222,7 @@ Partial Class Sumadora
         'cbMenos
         '
         Me.cbMenos.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbMenos.Location = New System.Drawing.Point(375, 146)
+        Me.cbMenos.Location = New System.Drawing.Point(375, 155)
         Me.cbMenos.Name = "cbMenos"
         Me.cbMenos.Size = New System.Drawing.Size(80, 80)
         Me.cbMenos.TabIndex = 30
@@ -266,7 +233,7 @@ Partial Class Sumadora
         '
         Me.cb3.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb3.ForeColor = System.Drawing.Color.DimGray
-        Me.cb3.Location = New System.Drawing.Point(280, 319)
+        Me.cb3.Location = New System.Drawing.Point(280, 328)
         Me.cb3.Name = "cb3"
         Me.cb3.Size = New System.Drawing.Size(80, 80)
         Me.cb3.TabIndex = 29
@@ -277,7 +244,7 @@ Partial Class Sumadora
         '
         Me.cb2.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb2.ForeColor = System.Drawing.Color.DimGray
-        Me.cb2.Location = New System.Drawing.Point(194, 319)
+        Me.cb2.Location = New System.Drawing.Point(194, 328)
         Me.cb2.Name = "cb2"
         Me.cb2.Size = New System.Drawing.Size(80, 80)
         Me.cb2.TabIndex = 28
@@ -288,7 +255,7 @@ Partial Class Sumadora
         '
         Me.cb1.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb1.ForeColor = System.Drawing.Color.DimGray
-        Me.cb1.Location = New System.Drawing.Point(108, 317)
+        Me.cb1.Location = New System.Drawing.Point(108, 326)
         Me.cb1.Name = "cb1"
         Me.cb1.Size = New System.Drawing.Size(80, 80)
         Me.cb1.TabIndex = 27
@@ -298,7 +265,7 @@ Partial Class Sumadora
         'cbPor
         '
         Me.cbPor.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbPor.Location = New System.Drawing.Point(16, 317)
+        Me.cbPor.Location = New System.Drawing.Point(16, 326)
         Me.cbPor.Name = "cbPor"
         Me.cbPor.Size = New System.Drawing.Size(80, 80)
         Me.cbPor.TabIndex = 26
@@ -309,7 +276,7 @@ Partial Class Sumadora
         '
         Me.cb6.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb6.ForeColor = System.Drawing.Color.DimGray
-        Me.cb6.Location = New System.Drawing.Point(280, 233)
+        Me.cb6.Location = New System.Drawing.Point(280, 242)
         Me.cb6.Name = "cb6"
         Me.cb6.Size = New System.Drawing.Size(80, 80)
         Me.cb6.TabIndex = 25
@@ -320,7 +287,7 @@ Partial Class Sumadora
         '
         Me.cb5.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb5.ForeColor = System.Drawing.Color.DimGray
-        Me.cb5.Location = New System.Drawing.Point(194, 233)
+        Me.cb5.Location = New System.Drawing.Point(194, 242)
         Me.cb5.Name = "cb5"
         Me.cb5.Size = New System.Drawing.Size(80, 80)
         Me.cb5.TabIndex = 24
@@ -331,7 +298,7 @@ Partial Class Sumadora
         '
         Me.cb4.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb4.ForeColor = System.Drawing.Color.DimGray
-        Me.cb4.Location = New System.Drawing.Point(108, 231)
+        Me.cb4.Location = New System.Drawing.Point(108, 240)
         Me.cb4.Name = "cb4"
         Me.cb4.Size = New System.Drawing.Size(80, 80)
         Me.cb4.TabIndex = 23
@@ -341,7 +308,7 @@ Partial Class Sumadora
         'cbDividir
         '
         Me.cbDividir.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbDividir.Location = New System.Drawing.Point(16, 145)
+        Me.cbDividir.Location = New System.Drawing.Point(16, 154)
         Me.cbDividir.Name = "cbDividir"
         Me.cbDividir.Size = New System.Drawing.Size(80, 80)
         Me.cbDividir.TabIndex = 22
@@ -352,7 +319,7 @@ Partial Class Sumadora
         '
         Me.cb9.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb9.ForeColor = System.Drawing.Color.DimGray
-        Me.cb9.Location = New System.Drawing.Point(280, 146)
+        Me.cb9.Location = New System.Drawing.Point(280, 155)
         Me.cb9.Name = "cb9"
         Me.cb9.Size = New System.Drawing.Size(80, 80)
         Me.cb9.TabIndex = 21
@@ -363,7 +330,7 @@ Partial Class Sumadora
         '
         Me.cb8.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb8.ForeColor = System.Drawing.Color.DimGray
-        Me.cb8.Location = New System.Drawing.Point(194, 146)
+        Me.cb8.Location = New System.Drawing.Point(194, 155)
         Me.cb8.Name = "cb8"
         Me.cb8.Size = New System.Drawing.Size(80, 80)
         Me.cb8.TabIndex = 20
@@ -374,7 +341,7 @@ Partial Class Sumadora
         '
         Me.cb7.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb7.ForeColor = System.Drawing.Color.DimGray
-        Me.cb7.Location = New System.Drawing.Point(108, 145)
+        Me.cb7.Location = New System.Drawing.Point(108, 154)
         Me.cb7.Name = "cb7"
         Me.cb7.Size = New System.Drawing.Size(80, 80)
         Me.cb7.TabIndex = 19
@@ -386,11 +353,58 @@ Partial Class Sumadora
         Me.tbResultado.BackColor = System.Drawing.Color.White
         Me.tbResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbResultado.Location = New System.Drawing.Point(16, 11)
+        Me.tbResultado.MaxLength = 10
         Me.tbResultado.Name = "tbResultado"
         Me.tbResultado.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.tbResultado.Size = New System.Drawing.Size(439, 81)
         Me.tbResultado.TabIndex = 18
         Me.tbResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.CheckBox3)
+        Me.GroupBox1.Controls.Add(Me.CheckBox2)
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 92)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(439, 52)
+        Me.GroupBox1.TabIndex = 36
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Opciones"
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox3.Location = New System.Drawing.Point(86, 22)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(88, 28)
+        Me.CheckBox3.TabIndex = 42
+        Me.CheckBox3.Text = "Fecha"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox2.Location = New System.Drawing.Point(232, 22)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(76, 28)
+        Me.CheckBox2.TabIndex = 41
+        Me.CheckBox2.Text = "Logo"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox1.Location = New System.Drawing.Point(355, 22)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(72, 28)
+        Me.CheckBox1.TabIndex = 40
+        Me.CheckBox1.Text = "Print"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Sumadora
         '
@@ -413,6 +427,8 @@ Partial Class Sumadora
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -437,12 +453,12 @@ Partial Class Sumadora
     Friend WithEvents tbResultado As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents dgvHistorial As System.Windows.Forms.DataGridView
-    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
     Friend WithEvents Datos As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ope As System.Windows.Forms.DataGridViewTextBoxColumn
-
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
 End Class
