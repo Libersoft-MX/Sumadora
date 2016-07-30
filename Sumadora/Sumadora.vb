@@ -30,10 +30,7 @@
                 Valor.KeyChar = ""
             ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then
                 Valor = RealizarCalculo(Valor)
-                OpeEnd = True
-                OpeAct = True
-                Operacion = "0"
-                Total = 0
+                Nueva_operación()
             Else
                 Valor.KeyChar = ""
             End If
@@ -63,11 +60,15 @@
             End If
         ElseIf OpeAct Then
             tbResultado.Text = ""
+            If Total = 0 And dgvHistorial.Rows.Count > 3 Then
+                Tabla_Limpiar()
+            End If
             OpeAct = False
         Else
             OpeEnd = False
             OpeAct = False
         End If
+        'tbResultado.Text = Format(Val(tbResultado.Text), “##,##0.00”).ToString
         Return Valor
     End Function
 
@@ -75,6 +76,7 @@
         If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
             If Total = 0 Then
                 Total = Val(tbResultado.Text)
+                Tabla_Agregar(tbResultado.Text)
             Else
                 Select Case Operacion
                     Case "+"
@@ -86,13 +88,21 @@
                     Case "/"
                         Total = Total / Val(tbResultado.Text)
                 End Select
-                tbResultado.Text = Total
+                Tabla_Agregar(tbResultado.Text)
+                tbResultado.Text = Format(Total, “##,##0.00”)
             End If
             OpeAct = True
         End If
         Valor.KeyChar = ""
         Return Valor
     End Function
+
+    Private Sub Nueva_operación()
+        OpeEnd = True
+        OpeAct = True
+        Operacion = "0"
+        Total = 0
+    End Sub
 #End Region
 #Region "Motor Button"
 
@@ -104,6 +114,27 @@
         dgvHistorial(0, Valor).Value = "456.00"
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
         Valor += 1
+    End Sub
+
+    Private Sub Tabla_Agregar(ByVal Valor As Decimal)
+        NumFilas += 1
+        dgvHistorial.Rows.Add()
+        dgvHistorial(0, NumFilas - 1).Value = Format(Total, “##,##0.00”)
+        dgvHistorial(0, NumFilas - 2).Value = "--------------------"
+        dgvHistorial(0, NumFilas - 3).Value = Format(Valor, “##,##0.00”)
+        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+    End Sub
+
+    Private Sub Tabla_Limpiar()
+        dgvHistorial.Rows.Clear()
+        NumFilas = 3
+        dgvHistorial.Rows.Add(3)
+        dgvHistorial(0, 0).Value = "0.00"
+        dgvHistorial(0, 1).Value = "--------------------"
+        dgvHistorial(0, 2).Value = "0.00"
+        dgvHistorial.ClearSelection()
+        tbResultado.Focus()
+
     End Sub
 #End Region
 #Region "Botones de Operaciones"
@@ -127,6 +158,7 @@
         'dgvHistorial.Rows(0).Selected = False
         'dgvHistorial.Rows(3).Selected = True
         dgvHistorial.ClearSelection()
+        MsgBox(dgvHistorial.RowCount.ToString)
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
@@ -186,11 +218,18 @@
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        dgvHistorial.Rows.Add(3)
+        dgvHistorial.Rows.Add(2)
         dgvHistorial(0, 0).Value = "0.00"
         dgvHistorial(0, 1).Value = "--------------------"
         dgvHistorial(0, 2).Value = "0.00"
+        dgvHistorial.ClearSelection()
+        tbResultado.Focus()
+    End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Nueva_operación()
+        Tabla_Limpiar()
+        tbResultado.Text = ""
         tbResultado.Focus()
     End Sub
 #End Region
