@@ -1,4 +1,5 @@
-﻿Public Class Sumadora
+﻿Imports Libersoft
+Public Class Sumadora
 
 #Region "Variables Globales"
 
@@ -13,9 +14,12 @@
     '// Variables usados en manipulación de tabla //////////////////////////////////////////////////////|
     Private NumFilas As Integer = 3         'Especifica el número de filas actuales de la tabla         |
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+    '// Variables usados en manipulación de tabla //////////////////////////////////////////////////////|
+    Private Ticket As New cImpresoraTickets 'Variable para comunicarse con la impresora                 |
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
 #End Region
-
-
 
 #Region "Motor KeyPress"
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
@@ -89,7 +93,7 @@
                         Total = Total / Val(tbResultado.Text)
                 End Select
                 Tabla_Agregar(tbResultado.Text)
-                tbResultado.Text = Format(Total, “##,##0.00”)
+                tbResultado.Text = Format(Total, "##,##0.00")
             End If
             OpeAct = True
         End If
@@ -115,16 +119,14 @@
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
         Valor += 1
     End Sub
-
     Private Sub Tabla_Agregar(ByVal Valor As Decimal)
         NumFilas += 1
         dgvHistorial.Rows.Add()
-        dgvHistorial(0, NumFilas - 1).Value = Format(Total, “##,##0.00”)
+        dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
         dgvHistorial(0, NumFilas - 2).Value = "--------------------"
-        dgvHistorial(0, NumFilas - 3).Value = Format(Valor, “##,##0.00”)
+        dgvHistorial(0, NumFilas - 3).Value = Format(Valor, "##,##0.00")
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
     End Sub
-
     Private Sub Tabla_Limpiar()
         dgvHistorial.Rows.Clear()
         NumFilas = 3
@@ -134,8 +136,25 @@
         dgvHistorial(0, 2).Value = "0.00"
         dgvHistorial.ClearSelection()
         tbResultado.Focus()
-
     End Sub
+    Private Sub Tabla_Calcular()
+        Dim i As Integer
+        If NumFilas > 3 Then
+            Total = 0
+
+            For i = 0 To NumFilas - 3
+                dgvHistorial(0, i).Value = Format(Val(dgvHistorial(0, i).Value), "##,##0.00")
+            Next
+            For i = 0 To NumFilas - 3
+                Total = Total + Val(dgvHistorial(0, i).Value)
+            Next
+            dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
+            dgvHistorial(0, NumFilas - 2).Value = "--------------------"
+
+            dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+        End If
+    End Sub
+
 #End Region
 #Region "Botones de Operaciones"
     Private Sub cbDividir_Click(sender As Object, e As EventArgs) Handles cbDividir.Click
@@ -147,7 +166,7 @@
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
-
+        Imprimir()
     End Sub
 
     Private Sub cbMenos_Click(sender As Object, e As EventArgs) Handles cbMenos.Click
@@ -216,7 +235,6 @@
     Private Sub tbResultado_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbResultado.KeyPress  'Tecla pulsada
         ValidadorNumero(e)
     End Sub
-
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         dgvHistorial.Rows.Add(2)
         dgvHistorial(0, 0).Value = "0.00"
@@ -225,12 +243,19 @@
         dgvHistorial.ClearSelection()
         tbResultado.Focus()
     End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Nueva_operación()
         Tabla_Limpiar()
         tbResultado.Text = ""
         tbResultado.Focus()
+    End Sub
+    Private Sub dgvHistorial_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvHistorial.CellEndEdit
+        Tabla_Calcular()
+    End Sub
+#End Region
+#Region "Impresora"
+    Private Sub Imprimir()
+        Ticket.ImprimirTicket()
     End Sub
 #End Region
 
