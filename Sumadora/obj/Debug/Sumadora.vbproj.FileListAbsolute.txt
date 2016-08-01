@@ -24,3 +24,6 @@ C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.dll
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\itextsharp.dll
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.pdb
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.xml
+C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\itextsharp.dll
+C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.pdb
+C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.xml

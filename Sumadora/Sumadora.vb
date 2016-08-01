@@ -150,7 +150,7 @@ Public Class Sumadora
             Next
             dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
             dgvHistorial(0, NumFilas - 2).Value = "--------------------"
-
+            tbResultado.Text = Format(Total, "##,##0.00")
             dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
         End If
     End Sub
@@ -176,8 +176,11 @@ Public Class Sumadora
     Private Sub cbIgual_Click(sender As Object, e As EventArgs) Handles cbIgual.Click
         'dgvHistorial.Rows(0).Selected = False
         'dgvHistorial.Rows(3).Selected = True
-        dgvHistorial.ClearSelection()
-        MsgBox(dgvHistorial.RowCount.ToString)
+        'dgvHistorial.ClearSelection()
+        'MsgBox(dgvHistorial.RowCount.ToString)
+        tbResultado.SelectionStart = tbResultado.TextLength
+        'tbResultado.SelectionLength = 1
+        tbResultado.Focus()
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
@@ -187,47 +190,68 @@ Public Class Sumadora
 #Region "Botones de Números"
     Private Sub cb0_Click(sender As Object, e As EventArgs) Handles cb0.Click
         tbResultado.Text = tbResultado.Text + "0"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cbPunto_Click(sender As Object, e As EventArgs) Handles cbPunto.Click
         tbResultado.Text = tbResultado.Text + "."
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb1_Click(sender As Object, e As EventArgs) Handles cb1.Click
         tbResultado.Text = tbResultado.Text + "1"
-
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb2_Click(sender As Object, e As EventArgs) Handles cb2.Click
         tbResultado.Text = tbResultado.Text + "2"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb3_Click(sender As Object, e As EventArgs) Handles cb3.Click
         tbResultado.Text = tbResultado.Text + "3"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb4_Click(sender As Object, e As EventArgs) Handles cb4.Click
         tbResultado.Text = tbResultado.Text + "4"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb5_Click(sender As Object, e As EventArgs) Handles cb5.Click
         tbResultado.Text = tbResultado.Text + "5"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb6_Click(sender As Object, e As EventArgs) Handles cb6.Click
         tbResultado.Text = tbResultado.Text + "6"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb7_Click(sender As Object, e As EventArgs) Handles cb7.Click
         tbResultado.Text = tbResultado.Text + "7"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb8_Click(sender As Object, e As EventArgs) Handles cb8.Click
         tbResultado.Text = tbResultado.Text + "8"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
     Private Sub cb9_Click(sender As Object, e As EventArgs) Handles cb9.Click
         tbResultado.Text = tbResultado.Text + "9"
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
 #End Region
