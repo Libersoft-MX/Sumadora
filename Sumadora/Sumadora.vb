@@ -16,7 +16,7 @@ Public Class Sumadora
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
     '// Variables usados en manipulación de tabla //////////////////////////////////////////////////////|
-    Private Ticket As New cImpresoraTickets 'Variable para comunicarse con la impresora                 |
+    'Private Ticket As New cImpresoraTickets 'Variable para comunicarse con la impresora                 |
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 #End Region
@@ -279,7 +279,12 @@ Public Class Sumadora
 #End Region
 #Region "Impresora"
     Private Sub Imprimir()
+        Dim Ticket As New cImpresoraTickets
         Ticket.ImprimirTicket()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Imprimir()
     End Sub
 #End Region
 

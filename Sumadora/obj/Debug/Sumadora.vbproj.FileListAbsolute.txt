@@ -27,3 +27,17 @@ C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.xml
 C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\itextsharp.dll
 C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.pdb
 C:\Users\Libersoft\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.xml
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.exe.config
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.exe
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.xml
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.pdb
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.exe
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.pdb
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.xml
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\itextsharp.dll
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.pdb
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.xml
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.vbprojResolveAssemblyReference.cache
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.Sumadora.resources
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.Resources.resources
+C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.vbproj.GenerateResource.Cache
