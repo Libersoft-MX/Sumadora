@@ -46,7 +46,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Libersoft">
+    <Reference Include="Libersoft, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libersoft\Libersoft\bin\Debug\Libersoft.dll</HintPath>
     </Reference>
     <Reference Include="System" />

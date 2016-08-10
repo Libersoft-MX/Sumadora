@@ -280,12 +280,16 @@ Public Class Sumadora
 #Region "Impresora"
     Private Sub Imprimir()
         Dim Ticket As New cImpresoraTickets
+        Ticket.Tabla = dgvHistorial
+        Ticket.Logotipo = Image.FromFile("Logo.jpeg")
         Ticket.ImprimirTicket()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
         Imprimir()
     End Sub
+
 #End Region
 
 End Class
