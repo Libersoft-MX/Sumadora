@@ -149,7 +149,6 @@ Partial Class Sumadora
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(82, 39)
         Me.Button3.TabIndex = 4
-        Me.Button3.Text = "0"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Panel2

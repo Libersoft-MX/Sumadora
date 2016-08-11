@@ -92,6 +92,7 @@ Public Class Sumadora
                     Case "/"
                         Total = Total / Val(tbResultado.Text)
                 End Select
+
                 Tabla_Agregar(tbResultado.Text)
                 tbResultado.Text = Format(Total, "##,##0.00")
             End If
@@ -119,12 +120,13 @@ Public Class Sumadora
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
         Valor += 1
     End Sub
-    Private Sub Tabla_Agregar(ByVal Valor As Decimal)
+    Private Sub Tabla_Agregar(ByVal Valor As Decimal, ByVal Ope As Integer)
         NumFilas += 1
         dgvHistorial.Rows.Add()
         dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
         dgvHistorial(0, NumFilas - 2).Value = "--------------------"
         dgvHistorial(0, NumFilas - 3).Value = Format(Valor, "##,##0.00")
+        dgvHistorial(1, NumFilas - 3).Value = Ope
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
     End Sub
     Private Sub Tabla_Limpiar()
@@ -134,6 +136,9 @@ Public Class Sumadora
         dgvHistorial(0, 0).Value = "0.00"
         dgvHistorial(0, 1).Value = "--------------------"
         dgvHistorial(0, 2).Value = "0.00"
+        dgvHistorial(1, 0).Value = 0
+        dgvHistorial(1, 1).Value = 1
+        dgvHistorial(1, 2).Value = 2
         dgvHistorial.ClearSelection()
         tbResultado.Focus()
     End Sub
@@ -288,6 +293,7 @@ Public Class Sumadora
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
         Imprimir()
+       
     End Sub
 
 #End Region
