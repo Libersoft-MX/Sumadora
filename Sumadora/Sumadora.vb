@@ -23,7 +23,8 @@ Public Class Sumadora
 
 #Region "Motor KeyPress"
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
-
+        Dim Auxiliar As String
+        Auxiliar = tbResultado.Text
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             If OpeEnd Then
                 tbResultado.Text = ""
@@ -35,6 +36,7 @@ Public Class Sumadora
             ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then
                 Valor = RealizarCalculo(Valor)
                 Nueva_operación()
+                Imprimir()
             Else
                 Valor.KeyChar = ""
             End If
@@ -43,15 +45,19 @@ Public Class Sumadora
         ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
             Valor = RealizarCalculo(Valor)
             Operacion = "x"
+            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
             Valor = RealizarCalculo(Valor)
             Operacion = "+"
+            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
             Valor = RealizarCalculo(Valor)
             Operacion = "-"
+            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
             Valor = RealizarCalculo(Valor)
             Operacion = "/"
+            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
             If Not Punto Then
                 Punto = True
@@ -80,7 +86,7 @@ Public Class Sumadora
         If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
             If Total = 0 Then
                 Total = Val(tbResultado.Text)
-                Tabla_Agregar(tbResultado.Text)
+                'Tabla_Agregar(tbResultado.Text, Operacion) '2 = Resta
             Else
                 Select Case Operacion
                     Case "+"
@@ -93,7 +99,8 @@ Public Class Sumadora
                         Total = Total / Val(tbResultado.Text)
                 End Select
 
-                Tabla_Agregar(tbResultado.Text)
+                'Tabla_Agregar(tbResultado.Text, Operacion)
+
                 tbResultado.Text = Format(Total, "##,##0.00")
             End If
             OpeAct = True
@@ -120,12 +127,14 @@ Public Class Sumadora
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
         Valor += 1
     End Sub
-    Private Sub Tabla_Agregar(ByVal Valor As Decimal, ByVal Ope As Integer)
+    Private Sub Tabla_Agregar(ByVal Valor As Decimal, ByVal Ope As String)
         NumFilas += 1
         dgvHistorial.Rows.Add()
         dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
         dgvHistorial(0, NumFilas - 2).Value = "--------------------"
         dgvHistorial(0, NumFilas - 3).Value = Format(Valor, "##,##0.00")
+        dgvHistorial(1, NumFilas - 1).Value = "0"
+        dgvHistorial(1, NumFilas - 2).Value = "0"
         dgvHistorial(1, NumFilas - 3).Value = Ope
         dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
     End Sub
@@ -136,9 +145,9 @@ Public Class Sumadora
         dgvHistorial(0, 0).Value = "0.00"
         dgvHistorial(0, 1).Value = "--------------------"
         dgvHistorial(0, 2).Value = "0.00"
-        dgvHistorial(1, 0).Value = 0
-        dgvHistorial(1, 1).Value = 1
-        dgvHistorial(1, 2).Value = 2
+        dgvHistorial(1, 0).Value = "0"
+        dgvHistorial(1, 1).Value = "0"
+        dgvHistorial(1, 2).Value = "0"
         dgvHistorial.ClearSelection()
         tbResultado.Focus()
     End Sub
@@ -293,7 +302,8 @@ Public Class Sumadora
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
         Imprimir()
-       
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 
 #End Region
