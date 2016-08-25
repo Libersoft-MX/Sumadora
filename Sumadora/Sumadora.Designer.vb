@@ -34,9 +34,9 @@ Partial Class Sumadora
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.cbFecha = New System.Windows.Forms.CheckBox()
+        Me.cbLogo = New System.Windows.Forms.CheckBox()
+        Me.cbPrint = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cbMas = New System.Windows.Forms.Button()
         Me.cbIgual = New System.Windows.Forms.Button()
@@ -180,9 +180,9 @@ Partial Class Sumadora
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.CheckBox3)
-        Me.GroupBox1.Controls.Add(Me.CheckBox2)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.cbFecha)
+        Me.GroupBox1.Controls.Add(Me.cbLogo)
+        Me.GroupBox1.Controls.Add(Me.cbPrint)
         Me.GroupBox1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(16, 92)
         Me.GroupBox1.Name = "GroupBox1"
@@ -191,38 +191,44 @@ Partial Class Sumadora
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Opciones"
         '
-        'CheckBox3
+        'cbFecha
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox3.Location = New System.Drawing.Point(86, 22)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(88, 28)
-        Me.CheckBox3.TabIndex = 42
-        Me.CheckBox3.Text = "Fecha"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.cbFecha.AutoSize = True
+        Me.cbFecha.Checked = True
+        Me.cbFecha.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbFecha.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbFecha.Location = New System.Drawing.Point(86, 22)
+        Me.cbFecha.Name = "cbFecha"
+        Me.cbFecha.Size = New System.Drawing.Size(88, 28)
+        Me.cbFecha.TabIndex = 42
+        Me.cbFecha.Text = "Fecha"
+        Me.cbFecha.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'cbLogo
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.Location = New System.Drawing.Point(232, 22)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(76, 28)
-        Me.CheckBox2.TabIndex = 41
-        Me.CheckBox2.Text = "Logo"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.cbLogo.AutoSize = True
+        Me.cbLogo.Checked = True
+        Me.cbLogo.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbLogo.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbLogo.Location = New System.Drawing.Point(232, 22)
+        Me.cbLogo.Name = "cbLogo"
+        Me.cbLogo.Size = New System.Drawing.Size(76, 28)
+        Me.cbLogo.TabIndex = 41
+        Me.cbLogo.Text = "Logo"
+        Me.cbLogo.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'cbPrint
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox1.Location = New System.Drawing.Point(355, 22)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(72, 28)
-        Me.CheckBox1.TabIndex = 40
-        Me.CheckBox1.Text = "Print"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.cbPrint.AutoSize = True
+        Me.cbPrint.Checked = True
+        Me.cbPrint.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbPrint.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbPrint.Location = New System.Drawing.Point(355, 22)
+        Me.cbPrint.Name = "cbPrint"
+        Me.cbPrint.Size = New System.Drawing.Size(72, 28)
+        Me.cbPrint.TabIndex = 40
+        Me.cbPrint.Text = "Print"
+        Me.cbPrint.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -471,8 +477,8 @@ Partial Class Sumadora
     Friend WithEvents Datos As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ope As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents cbFecha As CheckBox
+    Friend WithEvents cbLogo As CheckBox
+    Friend WithEvents cbPrint As CheckBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

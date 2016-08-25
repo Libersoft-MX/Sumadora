@@ -42,3 +42,8 @@ C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.Sumadora.res
 C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.Resources.resources
 C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.vbproj.GenerateResource.Cache
 C:\Users\Host\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Libersoft.dll
+C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.exe.manifest
+C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.application
+C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.TrustInfo.xml
+C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.exe.manifest
+C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.application

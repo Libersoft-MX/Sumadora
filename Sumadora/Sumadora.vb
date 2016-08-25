@@ -25,6 +25,7 @@ Public Class Sumadora
     Private Function ValidadorNumero(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
         Dim Auxiliar As String
         Auxiliar = tbResultado.Text
+
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             If OpeEnd Then
                 tbResultado.Text = ""
@@ -33,47 +34,100 @@ Public Class Sumadora
         ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
             If Operacion = "0" Then
                 Valor.KeyChar = ""
-            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then
-                Valor = RealizarCalculo(Valor)
+            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not Operacion = "0" Then
+                If Not OpeAct Then
+                    Valor = RealizarCalculo(Valor)
+                    Tabla_Agregar(Auxiliar, Operacion)
+                End If
                 Nueva_operación()
-                Imprimir()
+                If cbPrint.Checked Then
+                    Imprimir()
+                End If
             Else
                 Valor.KeyChar = ""
             End If
         ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
             Valor.KeyChar = ""
         ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
+            If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                Valor.KeyChar = ""
+                Return Valor
+            End If
+            If OpeAct Then
+                Operacion = "x"
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Operacion = "0" Then
+                Operacion = "x"
+            End If
             Valor = RealizarCalculo(Valor)
+            Tabla_Agregar(Auxiliar, Operacion)
             Operacion = "x"
-            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
+            If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                Valor.KeyChar = ""
+                Return Valor
+            End If
+            If OpeAct Then
+                Operacion = "+"
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Operacion = "0" Then
+                Operacion = "+"
+            End If
             Valor = RealizarCalculo(Valor)
+            Tabla_Agregar(Auxiliar, Operacion)
             Operacion = "+"
-            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
+            If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                Valor.KeyChar = ""
+                Return Valor
+            End If
+            If OpeAct Then
+                Operacion = "-"
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Operacion = "0" Then
+                Operacion = "-"
+            End If
             Valor = RealizarCalculo(Valor)
+            Tabla_Agregar(Auxiliar, Operacion)
             Operacion = "-"
-            Tabla_Agregar(Auxiliar, Operacion)
         ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
+            If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                Valor.KeyChar = ""
+                Return Valor
+            End If
+            If OpeAct Then
+                Operacion = "/"
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Operacion = "0" Then
+                Operacion = "/"
+            End If
             Valor = RealizarCalculo(Valor)
-            Operacion = "/"
             Tabla_Agregar(Auxiliar, Operacion)
+            Operacion = "/"
         ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
-            If Not Punto Then
-                Punto = True
+
+            If InStr(tbResultado.Text, ".") Then
+                Valor.KeyChar = ""
+                Return Valor
+            Else
                 If OpeAct Then
                     tbResultado.Text = ""
                     OpeAct = False
                 End If
-            Else
-                Valor.KeyChar = ""
             End If
+
         ElseIf OpeAct Then
             tbResultado.Text = ""
-            If Total = 0 And dgvHistorial.Rows.Count > 3 Then
+            If OpeEnd And dgvHistorial.Rows.Count > 3 Then
+                Nueva_operación()
                 Tabla_Limpiar()
             End If
             OpeAct = False
+            Punto = False
         Else
             OpeEnd = False
             OpeAct = False
@@ -83,9 +137,11 @@ Public Class Sumadora
     End Function
 
     Private Function RealizarCalculo(ByVal Valor As KeyPressEventArgs) As KeyPressEventArgs
+
         If Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not OpeAct Then         'Antes de operacion que no sea vacio o solo punto
             If Total = 0 Then
                 Total = Val(tbResultado.Text)
+
                 'Tabla_Agregar(tbResultado.Text, Operacion) '2 = Resta
             Else
                 Select Case Operacion
@@ -111,22 +167,28 @@ Public Class Sumadora
 
     Private Sub Nueva_operación()
         OpeEnd = True
+        Punto = False
         OpeAct = True
         Operacion = "0"
         Total = 0
+        'NumFilas = 3
     End Sub
 #End Region
 #Region "Motor Button"
 
+
+    Private Sub MoverCursor(ByVal Valor As String)
+        Dim e As New KeyPressEventArgs("")
+        e.KeyChar = Valor
+        e = ValidadorNumero(e)
+        If tbResultado.TextLength < 10 And Not e.KeyChar = "" Then
+            tbResultado.Text = tbResultado.Text + e.KeyChar
+        End If
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
+    End Sub
 #End Region
 #Region "Operaciones con la Tabla"
-    Private Sub Tabla()
-        Static Valor As Integer = 0
-        dgvHistorial.Rows.Add()
-        dgvHistorial(0, Valor).Value = "456.00"
-        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
-        Valor += 1
-    End Sub
     Private Sub Tabla_Agregar(ByVal Valor As Decimal, ByVal Ope As String)
         NumFilas += 1
         dgvHistorial.Rows.Add()
@@ -158,10 +220,11 @@ Public Class Sumadora
 
             For i = 0 To NumFilas - 3
                 dgvHistorial(0, i).Value = Format(Val(dgvHistorial(0, i).Value), "##,##0.00")
-            Next
-            For i = 0 To NumFilas - 3
                 Total = Total + Val(dgvHistorial(0, i).Value)
             Next
+            'For i = 0 To NumFilas - 3
+            'Total = Total + Val(dgvHistorial(0, i).Value)
+            'Next
             dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
             dgvHistorial(0, NumFilas - 2).Value = "--------------------"
             tbResultado.Text = Format(Total, "##,##0.00")
@@ -172,100 +235,68 @@ Public Class Sumadora
 #End Region
 #Region "Botones de Operaciones"
     Private Sub cbDividir_Click(sender As Object, e As EventArgs) Handles cbDividir.Click
-        Static Valor As Integer = 0
-        dgvHistorial.Rows.Add()
-        dgvHistorial(0, Valor).Value = "456.00"
-        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, Valor)
-        Valor += 1
+        MoverCursor("/")
     End Sub
 
     Private Sub cbPor_Click(sender As Object, e As EventArgs) Handles cbPor.Click
-        Imprimir()
+        MoverCursor("*")
     End Sub
 
     Private Sub cbMenos_Click(sender As Object, e As EventArgs) Handles cbMenos.Click
-
+        MoverCursor("-")
     End Sub
 
     Private Sub cbIgual_Click(sender As Object, e As EventArgs) Handles cbIgual.Click
-        'dgvHistorial.Rows(0).Selected = False
-        'dgvHistorial.Rows(3).Selected = True
-        'dgvHistorial.ClearSelection()
-        'MsgBox(dgvHistorial.RowCount.ToString)
-        tbResultado.SelectionStart = tbResultado.TextLength
-        'tbResultado.SelectionLength = 1
-        tbResultado.Focus()
+        MoverCursor(Chr(13))
     End Sub
 
     Private Sub cbMas_Click(sender As Object, e As EventArgs) Handles cbMas.Click
-
+        MoverCursor("+")
     End Sub
 #End Region
 #Region "Botones de Números"
     Private Sub cb0_Click(sender As Object, e As EventArgs) Handles cb0.Click
-        tbResultado.Text = tbResultado.Text + "0"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("0")
     End Sub
 
     Private Sub cbPunto_Click(sender As Object, e As EventArgs) Handles cbPunto.Click
-        tbResultado.Text = tbResultado.Text + "."
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor(".")
     End Sub
 
     Private Sub cb1_Click(sender As Object, e As EventArgs) Handles cb1.Click
-        tbResultado.Text = tbResultado.Text + "1"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("1")
     End Sub
 
     Private Sub cb2_Click(sender As Object, e As EventArgs) Handles cb2.Click
-        tbResultado.Text = tbResultado.Text + "2"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("2")
     End Sub
 
     Private Sub cb3_Click(sender As Object, e As EventArgs) Handles cb3.Click
-        tbResultado.Text = tbResultado.Text + "3"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("3")
     End Sub
 
     Private Sub cb4_Click(sender As Object, e As EventArgs) Handles cb4.Click
-        tbResultado.Text = tbResultado.Text + "4"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("4")
     End Sub
 
     Private Sub cb5_Click(sender As Object, e As EventArgs) Handles cb5.Click
-        tbResultado.Text = tbResultado.Text + "5"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("5")
     End Sub
 
     Private Sub cb6_Click(sender As Object, e As EventArgs) Handles cb6.Click
-        tbResultado.Text = tbResultado.Text + "6"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("6")
     End Sub
 
     Private Sub cb7_Click(sender As Object, e As EventArgs) Handles cb7.Click
-        tbResultado.Text = tbResultado.Text + "7"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("7")
     End Sub
 
     Private Sub cb8_Click(sender As Object, e As EventArgs) Handles cb8.Click
-        tbResultado.Text = tbResultado.Text + "8"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("8")
     End Sub
 
     Private Sub cb9_Click(sender As Object, e As EventArgs) Handles cb9.Click
-        tbResultado.Text = tbResultado.Text + "9"
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        MoverCursor("9")
     End Sub
 
 #End Region
@@ -295,7 +326,14 @@ Public Class Sumadora
     Private Sub Imprimir()
         Dim Ticket As New cImpresoraTickets
         Ticket.Tabla = dgvHistorial
-        Ticket.Logotipo = Image.FromFile("Logo.jpeg")
+        If cbLogo.Checked Then
+            Ticket.Logotipo = Image.FromFile("Logo.jpeg")
+        End If
+
+        If cbFecha.Checked Then
+            Ticket.Fecha = Format(Date.Now, "dd/MM/yyyy").ToString
+        End If
+
         Ticket.ImprimirTicket()
     End Sub
 
@@ -307,5 +345,20 @@ Public Class Sumadora
     End Sub
 
 #End Region
+
+    Private Sub cbFecha_Click(sender As Object, e As EventArgs) Handles cbFecha.Click
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
+    End Sub
+
+    Private Sub cbLogo_Click(sender As Object, e As EventArgs) Handles cbLogo.Click
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
+    End Sub
+
+    Private Sub cbPrint_Click(sender As Object, e As EventArgs) Handles cbPrint.Click
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
+    End Sub
 
 End Class
