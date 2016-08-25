@@ -6,7 +6,14 @@ Libersoft
 </name>
 </assembly>
 <members>
-<member name="P:Libersoft.cImpresoraTickets.Fecha">
+<member name="P:Libersoft.cImpresoraTickets.Empresa">
+	<summary>
+ Fecha en que se registra la transacción
+ </summary>
+	<value>String</value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:Libersoft.cImpresoraTickets.Fecha">
 	<summary>
  Fecha en que se registra la transacción
  </summary>

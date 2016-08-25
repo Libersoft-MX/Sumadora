@@ -55,6 +55,7 @@ Partial Class Sumadora
         Me.cb8 = New System.Windows.Forms.Button()
         Me.cb7 = New System.Windows.Forms.Button()
         Me.tbResultado = New System.Windows.Forms.TextBox()
+        Me.tbEmpresa = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +155,7 @@ Partial Class Sumadora
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel2.Controls.Add(Me.tbEmpresa)
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.cbMas)
@@ -175,7 +177,7 @@ Partial Class Sumadora
         Me.Panel2.Controls.Add(Me.tbResultado)
         Me.Panel2.Location = New System.Drawing.Point(221, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(471, 513)
+        Me.Panel2.Size = New System.Drawing.Size(471, 612)
         Me.Panel2.TabIndex = 19
         '
         'GroupBox1
@@ -184,7 +186,7 @@ Partial Class Sumadora
         Me.GroupBox1.Controls.Add(Me.cbLogo)
         Me.GroupBox1.Controls.Add(Me.cbPrint)
         Me.GroupBox1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(16, 92)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 138)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(439, 52)
         Me.GroupBox1.TabIndex = 36
@@ -235,7 +237,7 @@ Partial Class Sumadora
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Button1.Font = New System.Drawing.Font("Arial", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(16, 412)
+        Me.Button1.Location = New System.Drawing.Point(16, 458)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(80, 80)
         Me.Button1.TabIndex = 35
@@ -245,7 +247,7 @@ Partial Class Sumadora
         'cbMas
         '
         Me.cbMas.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbMas.Location = New System.Drawing.Point(375, 242)
+        Me.cbMas.Location = New System.Drawing.Point(375, 288)
         Me.cbMas.Name = "cbMas"
         Me.cbMas.Size = New System.Drawing.Size(80, 250)
         Me.cbMas.TabIndex = 34
@@ -255,7 +257,7 @@ Partial Class Sumadora
         'cbIgual
         '
         Me.cbIgual.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbIgual.Location = New System.Drawing.Point(16, 240)
+        Me.cbIgual.Location = New System.Drawing.Point(16, 286)
         Me.cbIgual.Name = "cbIgual"
         Me.cbIgual.Size = New System.Drawing.Size(80, 80)
         Me.cbIgual.TabIndex = 33
@@ -266,7 +268,7 @@ Partial Class Sumadora
         '
         Me.cbPunto.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbPunto.ForeColor = System.Drawing.Color.DimGray
-        Me.cbPunto.Location = New System.Drawing.Point(280, 412)
+        Me.cbPunto.Location = New System.Drawing.Point(280, 458)
         Me.cbPunto.Name = "cbPunto"
         Me.cbPunto.Size = New System.Drawing.Size(80, 82)
         Me.cbPunto.TabIndex = 32
@@ -277,7 +279,7 @@ Partial Class Sumadora
         '
         Me.cb0.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb0.ForeColor = System.Drawing.Color.DimGray
-        Me.cb0.Location = New System.Drawing.Point(108, 412)
+        Me.cb0.Location = New System.Drawing.Point(108, 458)
         Me.cb0.Name = "cb0"
         Me.cb0.Size = New System.Drawing.Size(166, 80)
         Me.cb0.TabIndex = 31
@@ -287,7 +289,7 @@ Partial Class Sumadora
         'cbMenos
         '
         Me.cbMenos.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbMenos.Location = New System.Drawing.Point(375, 155)
+        Me.cbMenos.Location = New System.Drawing.Point(375, 201)
         Me.cbMenos.Name = "cbMenos"
         Me.cbMenos.Size = New System.Drawing.Size(80, 80)
         Me.cbMenos.TabIndex = 30
@@ -298,7 +300,7 @@ Partial Class Sumadora
         '
         Me.cb3.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb3.ForeColor = System.Drawing.Color.DimGray
-        Me.cb3.Location = New System.Drawing.Point(280, 328)
+        Me.cb3.Location = New System.Drawing.Point(280, 374)
         Me.cb3.Name = "cb3"
         Me.cb3.Size = New System.Drawing.Size(80, 80)
         Me.cb3.TabIndex = 29
@@ -309,7 +311,7 @@ Partial Class Sumadora
         '
         Me.cb2.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb2.ForeColor = System.Drawing.Color.DimGray
-        Me.cb2.Location = New System.Drawing.Point(194, 328)
+        Me.cb2.Location = New System.Drawing.Point(194, 374)
         Me.cb2.Name = "cb2"
         Me.cb2.Size = New System.Drawing.Size(80, 80)
         Me.cb2.TabIndex = 28
@@ -320,7 +322,7 @@ Partial Class Sumadora
         '
         Me.cb1.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb1.ForeColor = System.Drawing.Color.DimGray
-        Me.cb1.Location = New System.Drawing.Point(108, 326)
+        Me.cb1.Location = New System.Drawing.Point(108, 372)
         Me.cb1.Name = "cb1"
         Me.cb1.Size = New System.Drawing.Size(80, 80)
         Me.cb1.TabIndex = 27
@@ -330,7 +332,7 @@ Partial Class Sumadora
         'cbPor
         '
         Me.cbPor.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbPor.Location = New System.Drawing.Point(16, 326)
+        Me.cbPor.Location = New System.Drawing.Point(16, 372)
         Me.cbPor.Name = "cbPor"
         Me.cbPor.Size = New System.Drawing.Size(80, 80)
         Me.cbPor.TabIndex = 26
@@ -341,7 +343,7 @@ Partial Class Sumadora
         '
         Me.cb6.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb6.ForeColor = System.Drawing.Color.DimGray
-        Me.cb6.Location = New System.Drawing.Point(280, 242)
+        Me.cb6.Location = New System.Drawing.Point(280, 288)
         Me.cb6.Name = "cb6"
         Me.cb6.Size = New System.Drawing.Size(80, 80)
         Me.cb6.TabIndex = 25
@@ -352,7 +354,7 @@ Partial Class Sumadora
         '
         Me.cb5.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb5.ForeColor = System.Drawing.Color.DimGray
-        Me.cb5.Location = New System.Drawing.Point(194, 242)
+        Me.cb5.Location = New System.Drawing.Point(194, 288)
         Me.cb5.Name = "cb5"
         Me.cb5.Size = New System.Drawing.Size(80, 80)
         Me.cb5.TabIndex = 24
@@ -363,7 +365,7 @@ Partial Class Sumadora
         '
         Me.cb4.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb4.ForeColor = System.Drawing.Color.DimGray
-        Me.cb4.Location = New System.Drawing.Point(108, 240)
+        Me.cb4.Location = New System.Drawing.Point(108, 286)
         Me.cb4.Name = "cb4"
         Me.cb4.Size = New System.Drawing.Size(80, 80)
         Me.cb4.TabIndex = 23
@@ -373,7 +375,7 @@ Partial Class Sumadora
         'cbDividir
         '
         Me.cbDividir.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbDividir.Location = New System.Drawing.Point(16, 154)
+        Me.cbDividir.Location = New System.Drawing.Point(16, 200)
         Me.cbDividir.Name = "cbDividir"
         Me.cbDividir.Size = New System.Drawing.Size(80, 80)
         Me.cbDividir.TabIndex = 22
@@ -384,7 +386,7 @@ Partial Class Sumadora
         '
         Me.cb9.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb9.ForeColor = System.Drawing.Color.DimGray
-        Me.cb9.Location = New System.Drawing.Point(280, 155)
+        Me.cb9.Location = New System.Drawing.Point(280, 201)
         Me.cb9.Name = "cb9"
         Me.cb9.Size = New System.Drawing.Size(80, 80)
         Me.cb9.TabIndex = 21
@@ -395,7 +397,7 @@ Partial Class Sumadora
         '
         Me.cb8.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb8.ForeColor = System.Drawing.Color.DimGray
-        Me.cb8.Location = New System.Drawing.Point(194, 155)
+        Me.cb8.Location = New System.Drawing.Point(194, 201)
         Me.cb8.Name = "cb8"
         Me.cb8.Size = New System.Drawing.Size(80, 80)
         Me.cb8.TabIndex = 20
@@ -406,7 +408,7 @@ Partial Class Sumadora
         '
         Me.cb7.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cb7.ForeColor = System.Drawing.Color.DimGray
-        Me.cb7.Location = New System.Drawing.Point(108, 154)
+        Me.cb7.Location = New System.Drawing.Point(108, 200)
         Me.cb7.Name = "cb7"
         Me.cb7.Size = New System.Drawing.Size(80, 80)
         Me.cb7.TabIndex = 19
@@ -417,20 +419,29 @@ Partial Class Sumadora
         '
         Me.tbResultado.BackColor = System.Drawing.Color.White
         Me.tbResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbResultado.Font = New System.Drawing.Font("Arial", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbResultado.Location = New System.Drawing.Point(16, 11)
         Me.tbResultado.MaxLength = 10
         Me.tbResultado.Name = "tbResultado"
         Me.tbResultado.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tbResultado.Size = New System.Drawing.Size(439, 81)
+        Me.tbResultado.Size = New System.Drawing.Size(439, 63)
         Me.tbResultado.TabIndex = 18
         Me.tbResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'tbEmpresa
+        '
+        Me.tbEmpresa.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbEmpresa.Location = New System.Drawing.Point(16, 80)
+        Me.tbEmpresa.Name = "tbEmpresa"
+        Me.tbEmpresa.Size = New System.Drawing.Size(235, 35)
+        Me.tbEmpresa.TabIndex = 37
         '
         'Sumadora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(38.0!, 72.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
-        Me.ClientSize = New System.Drawing.Size(689, 518)
+        Me.ClientSize = New System.Drawing.Size(689, 640)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -481,4 +492,5 @@ Partial Class Sumadora
     Friend WithEvents cbLogo As CheckBox
     Friend WithEvents cbPrint As CheckBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents tbEmpresa As System.Windows.Forms.TextBox
 End Class

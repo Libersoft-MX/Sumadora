@@ -34,7 +34,7 @@ Public Class Sumadora
         ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
             If Operacion = "0" Then
                 Valor.KeyChar = ""
-            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." And Not Operacion = "0" Then
+            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." Then
                 If Not OpeAct Then
                     Valor = RealizarCalculo(Valor)
                     Tabla_Agregar(Auxiliar, Operacion)
@@ -320,6 +320,8 @@ Public Class Sumadora
     End Sub
     Private Sub dgvHistorial_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvHistorial.CellEndEdit
         Tabla_Calcular()
+        tbResultado.SelectionStart = tbResultado.TextLength
+        tbResultado.Focus()
     End Sub
 #End Region
 #Region "Impresora"
@@ -333,7 +335,7 @@ Public Class Sumadora
         If cbFecha.Checked Then
             Ticket.Fecha = Format(Date.Now, "dd/MM/yyyy").ToString
         End If
-
+        Ticket.Empresa = tbEmpresa.Text
         Ticket.ImprimirTicket()
     End Sub
 
