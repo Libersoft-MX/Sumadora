@@ -26,6 +26,46 @@ Public Class Sumadora
         Dim Auxiliar As String
         Auxiliar = tbResultado.Text
 
+        If Valor.KeyChar = " " And tbEmpresa.Enabled Then
+            tbEmpresa.Focus()
+            Valor.KeyChar = ""
+            Return Valor
+        ElseIf Valor.KeyChar = "n" Or Valor.KeyChar = "N" Then
+            If cbNombre.Checked Then
+                cbNombre.Checked = False
+                tbEmpresa.Enabled = False
+            Else
+                cbNombre.Checked = True
+                tbEmpresa.Enabled = True
+            End If
+            Valor.KeyChar = ""
+            Return Valor
+        ElseIf Valor.KeyChar = "f" Or Valor.KeyChar = "F" Then
+            If cbFecha.Checked Then
+                cbFecha.Checked = False
+            Else
+                cbFecha.Checked = True
+            End If
+            Valor.KeyChar = ""
+            Return Valor
+        ElseIf Valor.KeyChar = "l" Or Valor.KeyChar = "L" Then
+            If cbLogo.Checked Then
+                cbLogo.Checked = False
+            Else
+                cbLogo.Checked = True
+            End If
+            Valor.KeyChar = ""
+            Return Valor
+        ElseIf Valor.KeyChar = "p" Or Valor.KeyChar = "P" Then
+            If cbPrint.Checked Then
+                cbPrint.Checked = False
+            Else
+                cbPrint.Checked = True
+            End If
+            Valor.KeyChar = ""
+            Return Valor
+        End If
+
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             If OpeEnd Then
                 tbResultado.Text = ""
@@ -219,8 +259,8 @@ Public Class Sumadora
             Total = 0
 
             For i = 0 To NumFilas - 3
-                dgvHistorial(0, i).Value = Format(Val(dgvHistorial(0, i).Value), "##,##0.00")
-                Total = Total + Val(dgvHistorial(0, i).Value)
+                dgvHistorial(0, i).Value = Format(System.Convert.ToDecimal(dgvHistorial(0, i).Value), "##,##0.00")
+                Total = Total + Val(System.Convert.ToDecimal(dgvHistorial(0, i).Value))
             Next
             'For i = 0 To NumFilas - 3
             'Total = Total + Val(dgvHistorial(0, i).Value)
@@ -318,6 +358,8 @@ Public Class Sumadora
         tbResultado.Text = ""
         tbResultado.Focus()
     End Sub
+
+
     Private Sub dgvHistorial_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvHistorial.CellEndEdit
         Tabla_Calcular()
         tbResultado.SelectionStart = tbResultado.TextLength
@@ -335,7 +377,10 @@ Public Class Sumadora
         If cbFecha.Checked Then
             Ticket.Fecha = Format(Date.Now, "dd/MM/yyyy").ToString
         End If
-        Ticket.Empresa = tbEmpresa.Text
+        If cbNombre.Checked And Not tbEmpresa.Text = "" Then
+            Ticket.Empresa = tbEmpresa.Text
+        End If
+
         Ticket.ImprimirTicket()
     End Sub
 
@@ -363,4 +408,34 @@ Public Class Sumadora
         tbResultado.Focus()
     End Sub
 
+    Private Sub tbEmpresa_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbEmpresa.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        End If
+    End Sub
+
+    Private Sub cbNombre_Click(sender As Object, e As EventArgs) Handles cbNombre.Click
+        If cbNombre.Checked Then
+            tbEmpresa.Enabled = True
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        Else
+            tbEmpresa.Enabled = False
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        End If
+
+    End Sub
+
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        MsgBox(dgvHistorial.Rows.Count.ToString)
+    End Sub
+
+    Private Sub dgvHistorial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles dgvHistorial.KeyPress
+        If e.KeyChar = "e" Then
+            MsgBox("Letra e")
+        End If
+    End Sub
 End Class
