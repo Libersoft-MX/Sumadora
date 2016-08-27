@@ -8,7 +8,7 @@ Public Class Sumadora
     Private Punto As Boolean = False        'Especifica si ya se ha precionado la tecla punto           |
     Private Operacion As Char = "0"         'Especifica que operación se ha seleccionado                |
     Private OpeAct As Boolean = False       'Especifica si ya se ha seleccionado una operacion          |
-    Private OpeEnd As Boolean = True        'Especifica si ya se realizó el calculo                     |
+    Private OpeEnd As Boolean = False       'Especifica si ya se realizó el calculo                     |
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
     '// Variables usados en manipulación de tabla //////////////////////////////////////////////////////|
@@ -26,6 +26,18 @@ Public Class Sumadora
         Dim Auxiliar As String
         Auxiliar = tbResultado.Text
 
+        If OpeEnd And NumFilas = 5 And (Valor.KeyChar = "+" Or Valor.KeyChar = "-" Or Valor.KeyChar = "*" Or Valor.KeyChar = "/") Then
+            dgvHistorial(1, 1).Value = Valor.KeyChar
+            dgvHistorial(1, 2).Value = Valor.KeyChar
+            Operacion = Valor.KeyChar
+            'lNotificacion.Text = Valor.KeyChar
+            tbResultado.Text = ""
+            Tabla_Calcular()
+            Valor.KeyChar = ""
+            Return Valor
+        End If
+
+        '**********************************************************
         If Valor.KeyChar = " " And tbEmpresa.Enabled Then
             tbEmpresa.Focus()
             Valor.KeyChar = ""
@@ -65,13 +77,16 @@ Public Class Sumadora
             Valor.KeyChar = ""
             Return Valor
         End If
-
+        '*********************************************************************************
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             If OpeEnd Then
                 tbResultado.Text = ""
             End If
             Return Valor
         ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
+            If OpeEnd And cbPrint.Checked Then
+                Imprimir()
+            End If
             If Operacion = "0" Then
                 Valor.KeyChar = ""
             ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." Then
@@ -83,6 +98,7 @@ Public Class Sumadora
                 If cbPrint.Checked Then
                     Imprimir()
                 End If
+                OpeEnd = True
             Else
                 Valor.KeyChar = ""
             End If
@@ -162,17 +178,24 @@ Public Class Sumadora
 
         ElseIf OpeAct Then
             tbResultado.Text = ""
+            lNotificacion.Text = ""
             If OpeEnd And dgvHistorial.Rows.Count > 3 Then
                 Nueva_operación()
                 Tabla_Limpiar()
             End If
             OpeAct = False
             Punto = False
+            OpeEnd = False
         Else
             OpeEnd = False
             OpeAct = False
         End If
         'tbResultado.Text = Format(Val(tbResultado.Text), “##,##0.00”).ToString
+
+        If Not Operacion = "0" Then
+            lNotificacion.Text = Operacion
+        End If
+
         Return Valor
     End Function
 
@@ -198,6 +221,7 @@ Public Class Sumadora
                 'Tabla_Agregar(tbResultado.Text, Operacion)
 
                 tbResultado.Text = Format(Total, "##,##0.00")
+
             End If
             OpeAct = True
         End If
@@ -206,12 +230,13 @@ Public Class Sumadora
     End Function
 
     Private Sub Nueva_operación()
-        OpeEnd = True
+        'OpeEnd = True
         Punto = False
-        OpeAct = True
+        'OpeAct = True
         Operacion = "0"
         Total = 0
         'NumFilas = 3
+
     End Sub
 #End Region
 #Region "Motor Button"
@@ -258,17 +283,37 @@ Public Class Sumadora
         If NumFilas > 3 Then
             Total = 0
 
-            For i = 0 To NumFilas - 3
-                dgvHistorial(0, i).Value = Format(System.Convert.ToDecimal(dgvHistorial(0, i).Value), "##,##0.00")
-                Total = Total + Val(System.Convert.ToDecimal(dgvHistorial(0, i).Value))
-            Next
-            'For i = 0 To NumFilas - 3
-            'Total = Total + Val(dgvHistorial(0, i).Value)
-            'Next
+            If Not Operacion = "0" Then
+                lNotificacion.Text = Operacion
+            End If
+
+            If OpeEnd And NumFilas = 5 Then
+                Select Case lNotificacion.Text
+                    Case "+"
+                        Total = Val(System.Convert.ToDecimal(dgvHistorial(0, 1).Value)) + Val(System.Convert.ToDecimal(dgvHistorial(0, 2).Value))
+                    Case "-"
+                        Total = Val(System.Convert.ToDecimal(dgvHistorial(0, 1).Value)) - Val(System.Convert.ToDecimal(dgvHistorial(0, 2).Value))
+                    Case "*"
+                        Total = Val(System.Convert.ToDecimal(dgvHistorial(0, 1).Value)) * Val(System.Convert.ToDecimal(dgvHistorial(0, 2).Value))
+                    Case "/"
+                        Total = Val(System.Convert.ToDecimal(dgvHistorial(0, 1).Value)) / Val(System.Convert.ToDecimal(dgvHistorial(0, 2).Value))
+                End Select
+
+            Else
+                For i = 0 To NumFilas - 3
+                    dgvHistorial(0, i).Value = Format(System.Convert.ToDecimal(dgvHistorial(0, i).Value), "##,##0.00")
+                    Total = Total + Val(System.Convert.ToDecimal(dgvHistorial(0, i).Value))
+                Next
+            End If
+
+
             dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
             dgvHistorial(0, NumFilas - 2).Value = "--------------------"
             tbResultado.Text = Format(Total, "##,##0.00")
             dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+
+            '******************************************
+            
         End If
     End Sub
 
@@ -356,6 +401,7 @@ Public Class Sumadora
         Nueva_operación()
         Tabla_Limpiar()
         tbResultado.Text = ""
+        lNotificacion.Text = ""
         tbResultado.Focus()
     End Sub
 
@@ -379,6 +425,10 @@ Public Class Sumadora
         End If
         If cbNombre.Checked And Not tbEmpresa.Text = "" Then
             Ticket.Empresa = tbEmpresa.Text
+        End If
+
+        If Not lNotificacion.Text = "" And Not lNotificacion.Text = "." Then
+            Ticket.Operacion = lNotificacion.Text
         End If
 
         Ticket.ImprimirTicket()

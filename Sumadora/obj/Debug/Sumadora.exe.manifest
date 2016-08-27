@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sumadora.exe" size="401408">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sumadora.exe" size="402432">
       <assemblyIdentity name="Sumadora" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nDXJPatXGRXQ1Ng9cWZk7fkfnB8598AsjgJYu4ogNqw=</dsig:DigestValue>
+        <dsig:DigestValue>i8YIk0YJAY1ta8+OSADFw5d7O+Jjl+o3HsDGCMks5mo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

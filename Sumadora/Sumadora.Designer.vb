@@ -27,6 +27,7 @@ Partial Class Sumadora
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Sumadora))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lNotificacion = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvHistorial = New System.Windows.Forms.DataGridView()
@@ -73,6 +74,7 @@ Partial Class Sumadora
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.lNotificacion)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.dgvHistorial)
@@ -82,6 +84,17 @@ Partial Class Sumadora
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(215, 513)
         Me.Panel1.TabIndex = 18
+        '
+        'lNotificacion
+        '
+        Me.lNotificacion.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lNotificacion.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.lNotificacion.Location = New System.Drawing.Point(17, 179)
+        Me.lNotificacion.Name = "lNotificacion"
+        Me.lNotificacion.Size = New System.Drawing.Size(24, 22)
+        Me.lNotificacion.TabIndex = 7
+        Me.lNotificacion.Text = "."
+        Me.lNotificacion.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label1
         '
@@ -528,7 +541,7 @@ Partial Class Sumadora
         Me.MaximizeBox = False
         Me.Name = "Sumadora"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "GEP Calculator"
+        Me.Text = "GEP Calculator V.2.0"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).EndInit()
@@ -576,4 +589,5 @@ Partial Class Sumadora
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Tabla As System.Windows.Forms.ToolTip
+    Friend WithEvents lNotificacion As System.Windows.Forms.Label
 End Class
