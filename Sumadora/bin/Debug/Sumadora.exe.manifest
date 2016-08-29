@@ -43,26 +43,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Libersoft.dll" size="48128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Libersoft.dll" size="49152">
       <assemblyIdentity name="Libersoft" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xtCkQF2P38hR6njGGEBHjN3sJ8bhXYIt3uL4b+/pCaE=</dsig:DigestValue>
+        <dsig:DigestValue>ILOK37Zb4PX6UgYgH5hwREafXpuUSaAa0Uvw/4WnwIE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sumadora.exe" size="402432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sumadora.exe" size="402944">
       <assemblyIdentity name="Sumadora" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i8YIk0YJAY1ta8+OSADFw5d7O+Jjl+o3HsDGCMks5mo=</dsig:DigestValue>
+        <dsig:DigestValue>iKucU3VHPVqzPr1rUDv5DzsywVJ85GMVtYYezca3Cz4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

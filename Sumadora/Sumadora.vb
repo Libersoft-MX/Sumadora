@@ -77,6 +77,8 @@ Public Class Sumadora
             Valor.KeyChar = ""
             Return Valor
         End If
+
+
         '*********************************************************************************
         If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
             If OpeEnd Then
@@ -86,6 +88,8 @@ Public Class Sumadora
         ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
             If OpeEnd And cbPrint.Checked Then
                 Imprimir()
+                Valor.KeyChar = ""
+                Return Valor
             End If
             If Operacion = "0" Then
                 Valor.KeyChar = ""

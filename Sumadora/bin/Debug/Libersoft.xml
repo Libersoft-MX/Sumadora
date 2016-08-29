@@ -6,9 +6,16 @@ Libersoft
 </name>
 </assembly>
 <members>
-<member name="P:Libersoft.cImpresoraTickets.Empresa">
+<member name="P:Libersoft.cImpresoraTickets.Operacion">
 	<summary>
- Fecha en que se registra la transacción
+ Tipo de operación
+ </summary>
+	<value>String</value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:Libersoft.cImpresoraTickets.Empresa">
+	<summary>
+ Nombre de la empresa 
  </summary>
 	<value>String</value>
 	<returns></returns>
@@ -87,14 +94,6 @@ Libersoft
  </summary>
 	<param name="Num">Número a convertir a texto</param>
 	<returns>Cadena</returns>
-	<remarks></remarks>
-</member><member name="M:Libersoft.cImpresoraTickets.PrintText(System.String,System.Drawing.Font,System.Int32)">
-	<summary>
- Agrega una linea al documento. Alineación: 0-&gt; Izquierda; 1-&gt;Centro; 2-&gt; Derecha
- </summary>
-	<param name="Texto">Texto a imprimir</param>
-	<param name="Fuente_F">Titulo; Encabezado; Cuerpo; Columna</param>
-	<param name="Alineacion">Alineación: 0-&gt; Izquierda; 1-&gt;Centro; 2-&gt; Derecha</param>
 	<remarks></remarks>
 </member><member name="M:Libersoft.cImpresoraTickets.EndPrint">
 	<summary>
