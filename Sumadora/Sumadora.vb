@@ -267,7 +267,9 @@ Public Class Sumadora
         dgvHistorial(1, NumFilas - 1).Value = "0"
         dgvHistorial(1, NumFilas - 2).Value = "0"
         dgvHistorial(1, NumFilas - 3).Value = Ope
-        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+        'dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+        On Error Resume Next
+        MostrarUltimo()
     End Sub
     Private Sub Tabla_Limpiar()
         dgvHistorial.Rows.Clear()
@@ -281,6 +283,10 @@ Public Class Sumadora
         dgvHistorial(1, 2).Value = "0"
         dgvHistorial.ClearSelection()
         tbResultado.Focus()
+    End Sub
+
+    Private Sub MostrarUltimo()
+        dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
     End Sub
     Private Sub Tabla_Calcular()
         Dim i As Integer
@@ -314,7 +320,7 @@ Public Class Sumadora
             dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
             dgvHistorial(0, NumFilas - 2).Value = "--------------------"
             tbResultado.Text = Format(Total, "##,##0.00")
-            dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+            'dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
 
             '******************************************
             
@@ -412,6 +418,7 @@ Public Class Sumadora
 
     Private Sub dgvHistorial_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvHistorial.CellEndEdit
         Tabla_Calcular()
+        'MostrarUltimo()
         tbResultado.SelectionStart = tbResultado.TextLength
         tbResultado.Focus()
     End Sub
