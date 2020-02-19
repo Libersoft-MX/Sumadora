@@ -14,7 +14,7 @@ Option Explicit On
 
 Namespace My
     
-    'NOTA: este archivo se genera de forma automática; no lo modifique directamente. Para realizar cambios,
+    'NOTA: Este archivo se genera automáticamente; no lo modifique directamente.  Para hacer cambios,
     ' o si detecta errores de compilación en este archivo, vaya al Diseñador de proyectos
     ' (vaya a Propiedades del proyecto o haga doble clic en el nodo My Project en el
     ' Explorador de soluciones) y realice cambios en la pestaña Aplicación.
@@ -26,8 +26,8 @@ Namespace My
             MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
             Me.IsSingleInstance = true
             Me.EnableVisualStyles = true
-            Me.SaveMySettingsOnExit = true
-            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
+            Me.SaveMySettingsOnExit = false
+            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterAllFormsClose
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _

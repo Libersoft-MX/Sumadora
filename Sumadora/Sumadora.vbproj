@@ -11,7 +11,7 @@
     <AssemblyName>Sumadora</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <PublishUrl>C:\Users\Daniel\Desktop\Sumadora\</PublishUrl>
@@ -25,22 +25,24 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsUrl>C:\Users\Daniel\Desktop\Sumadora</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Sumadora.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,7 +51,8 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Sumadora.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -66,7 +69,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo_Piramide.ico</ApplicationIcon>
+    <ApplicationIcon>LOGO_Libersoft_Oficial 2 - 90x90.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>62E3AA9E65B807AD58EBAB6A1B489A1A1943D144</ManifestCertificateThumbprint>
@@ -75,7 +78,7 @@
     <ManifestKeyFile>Sumadora_ClaveTemporal.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -84,7 +87,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Libersoft, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -161,7 +164,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="Sumadora_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo Piramide.jpeg" />
@@ -170,7 +172,9 @@
     <None Include="Resources\print.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LOGO_Libersoft_Oficial 2 - 90x90.ico" />
     <Content Include="Logo_Piramide.ico" />
+    <None Include="Resources\logo2.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

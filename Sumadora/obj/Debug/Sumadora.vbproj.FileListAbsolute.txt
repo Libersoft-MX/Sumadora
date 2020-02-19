@@ -47,3 +47,17 @@ C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\bin\Debug\Sumadora.applicatio
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.TrustInfo.xml
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.exe.manifest
 C:\Users\Daniel\Documents\GitHub\Sumadora\Sumadora\obj\Debug\Sumadora.application
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Sumadora.exe.config
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Sumadora.exe
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Sumadora.pdb
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Libersoft.dll
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\itextsharp.dll
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Libersoft.pdb
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\bin\Debug\Libersoft.xml
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.vbprojAssemblyReference.cache
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.Sumadora.resources
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.Resources.resources
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.vbproj.GenerateResource.cache
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.vbproj.CopyComplete
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.exe
+C:\Users\pcd51\Documents\Visual Studio 2019\Proyects\Sumadora\Sumadora\obj\Debug\Sumadora.pdb

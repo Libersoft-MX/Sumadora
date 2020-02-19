@@ -26,179 +26,184 @@ Public Class Sumadora
         Dim Auxiliar As String
         Auxiliar = tbResultado.Text
 
-        If OpeEnd And NumFilas = 5 And (Valor.KeyChar = "+" Or Valor.KeyChar = "-" Or Valor.KeyChar = "*" Or Valor.KeyChar = "/") Then
-            dgvHistorial(1, 1).Value = Valor.KeyChar
-            dgvHistorial(1, 2).Value = Valor.KeyChar
-            Operacion = Valor.KeyChar
-            'lNotificacion.Text = Valor.KeyChar
-            tbResultado.Text = ""
-            Tabla_Calcular()
-            Valor.KeyChar = ""
-            Return Valor
-        End If
+        Try
 
-        '**********************************************************
-        If Valor.KeyChar = " " And tbEmpresa.Enabled Then
-            tbEmpresa.Focus()
-            Valor.KeyChar = ""
-            Return Valor
-        ElseIf Valor.KeyChar = "n" Or Valor.KeyChar = "N" Then
-            If cbNombre.Checked Then
-                cbNombre.Checked = False
-                tbEmpresa.Enabled = False
-            Else
-                cbNombre.Checked = True
-                tbEmpresa.Enabled = True
-            End If
-            Valor.KeyChar = ""
-            Return Valor
-        ElseIf Valor.KeyChar = "f" Or Valor.KeyChar = "F" Then
-            If cbFecha.Checked Then
-                cbFecha.Checked = False
-            Else
-                cbFecha.Checked = True
-            End If
-            Valor.KeyChar = ""
-            Return Valor
-        ElseIf Valor.KeyChar = "l" Or Valor.KeyChar = "L" Then
-            If cbLogo.Checked Then
-                cbLogo.Checked = False
-            Else
-                cbLogo.Checked = True
-            End If
-            Valor.KeyChar = ""
-            Return Valor
-        ElseIf Valor.KeyChar = "p" Or Valor.KeyChar = "P" Then
-            If cbPrint.Checked Then
-                cbPrint.Checked = False
-            Else
-                cbPrint.Checked = True
-            End If
-            Valor.KeyChar = ""
-            Return Valor
-        End If
-
-
-        '*********************************************************************************
-        If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
-            If OpeEnd Then
+            If OpeEnd And NumFilas = 5 And (Valor.KeyChar = "+" Or Valor.KeyChar = "-" Or Valor.KeyChar = "*" Or Valor.KeyChar = "/") Then
+                dgvHistorial(1, 1).Value = Valor.KeyChar
+                dgvHistorial(1, 2).Value = Valor.KeyChar
+                Operacion = Valor.KeyChar
+                'lNotificacion.Text = Valor.KeyChar
                 tbResultado.Text = ""
-            End If
-            Return Valor
-        ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
-            If OpeEnd And cbPrint.Checked Then
-                Imprimir()
+                Tabla_Calcular()
                 Valor.KeyChar = ""
                 Return Valor
             End If
-            If Operacion = "0" Then
+
+            '**********************************************************
+            If Valor.KeyChar = " " And tbEmpresa.Enabled Then
+                tbEmpresa.Focus()
                 Valor.KeyChar = ""
-            ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." Then
-                If Not OpeAct Then
-                    Valor = RealizarCalculo(Valor)
-                    Tabla_Agregar(Auxiliar, Operacion)
+                Return Valor
+            ElseIf Valor.KeyChar = "n" Or Valor.KeyChar = "N" Then
+                If cbNombre.Checked Then
+                    cbNombre.Checked = False
+                    tbEmpresa.Enabled = False
+                Else
+                    cbNombre.Checked = True
+                    tbEmpresa.Enabled = True
                 End If
-                Nueva_operación()
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Valor.KeyChar = "f" Or Valor.KeyChar = "F" Then
+                If cbFecha.Checked Then
+                    cbFecha.Checked = False
+                Else
+                    cbFecha.Checked = True
+                End If
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Valor.KeyChar = "l" Or Valor.KeyChar = "L" Then
+                If cbLogo.Checked Then
+                    cbLogo.Checked = False
+                Else
+                    cbLogo.Checked = True
+                End If
+                Valor.KeyChar = ""
+                Return Valor
+            ElseIf Valor.KeyChar = "p" Or Valor.KeyChar = "P" Then
                 If cbPrint.Checked Then
-                    Imprimir()
+                    cbPrint.Checked = False
+                Else
+                    cbPrint.Checked = True
                 End If
-                OpeEnd = True
-            Else
-                Valor.KeyChar = ""
-            End If
-        ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
-            Valor.KeyChar = ""
-        ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
-            If tbResultado.Text = "" Or tbResultado.Text = "." Then
                 Valor.KeyChar = ""
                 Return Valor
             End If
-            If OpeAct Then
-                Operacion = "x"
-                Valor.KeyChar = ""
-                Return Valor
-            ElseIf Operacion = "0" Then
-                Operacion = "x"
-            End If
-            Valor = RealizarCalculo(Valor)
-            Tabla_Agregar(Auxiliar, Operacion)
-            Operacion = "x"
-        ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
-            If tbResultado.Text = "" Or tbResultado.Text = "." Then
-                Valor.KeyChar = ""
-                Return Valor
-            End If
-            If OpeAct Then
-                Operacion = "+"
-                Valor.KeyChar = ""
-                Return Valor
-            ElseIf Operacion = "0" Then
-                Operacion = "+"
-            End If
-            Valor = RealizarCalculo(Valor)
-            Tabla_Agregar(Auxiliar, Operacion)
-            Operacion = "+"
-        ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
-            If tbResultado.Text = "" Or tbResultado.Text = "." Then
-                Valor.KeyChar = ""
-                Return Valor
-            End If
-            If OpeAct Then
-                Operacion = "-"
-                Valor.KeyChar = ""
-                Return Valor
-            ElseIf Operacion = "0" Then
-                Operacion = "-"
-            End If
-            Valor = RealizarCalculo(Valor)
-            Tabla_Agregar(Auxiliar, Operacion)
-            Operacion = "-"
-        ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
-            If tbResultado.Text = "" Or tbResultado.Text = "." Then
-                Valor.KeyChar = ""
-                Return Valor
-            End If
-            If OpeAct Then
-                Operacion = "/"
-                Valor.KeyChar = ""
-                Return Valor
-            ElseIf Operacion = "0" Then
-                Operacion = "/"
-            End If
-            Valor = RealizarCalculo(Valor)
-            Tabla_Agregar(Auxiliar, Operacion)
-            Operacion = "/"
-        ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
 
-            If InStr(tbResultado.Text, ".") Then
-                Valor.KeyChar = ""
-                Return Valor
-            Else
-                If OpeAct Then
+
+            '*********************************************************************************
+            If Asc(Valor.KeyChar) = 8 Then          'Tecla de retroceso
+                If OpeEnd Then
                     tbResultado.Text = ""
-                    OpeAct = False
                 End If
-            End If
+                Return Valor
+            ElseIf Asc(Valor.KeyChar) = 13 Then     'Tecla Enter
+                If OpeEnd And cbPrint.Checked Then
+                    Imprimir()
+                    Valor.KeyChar = ""
+                    Return Valor
+                End If
+                If Operacion = "0" Then
+                    Valor.KeyChar = ""
+                ElseIf Not tbResultado.Text = "" And Not tbResultado.Text = "." Then
+                    If Not OpeAct Then
+                        Valor = RealizarCalculo(Valor)
+                        Tabla_Agregar(Auxiliar, Operacion)
+                    End If
+                    Nueva_operación()
+                    If cbPrint.Checked Then
+                        Imprimir()
+                    End If
+                    OpeEnd = True
+                Else
+                    Valor.KeyChar = ""
+                End If
+            ElseIf (Asc(Valor.KeyChar) < 42 Or Asc(Valor.KeyChar) > 57 Or Asc(Valor.KeyChar) = 44) Then
+                Valor.KeyChar = ""
+            ElseIf Asc(Valor.KeyChar) = 42 Then     'Operación "x"
+                If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                    Valor.KeyChar = ""
+                    Return Valor
+                End If
+                If OpeAct Then
+                    Operacion = "x"
+                    Valor.KeyChar = ""
+                    Return Valor
+                ElseIf Operacion = "0" Then
+                    Operacion = "x"
+                End If
+                Valor = RealizarCalculo(Valor)
+                Tabla_Agregar(Auxiliar, Operacion)
+                Operacion = "x"
+            ElseIf Asc(Valor.KeyChar) = 43 Then     'Operación "+"
+                If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                    Valor.KeyChar = ""
+                    Return Valor
+                End If
+                If OpeAct Then
+                    Operacion = "+"
+                    Valor.KeyChar = ""
+                    Return Valor
+                ElseIf Operacion = "0" Then
+                    Operacion = "+"
+                End If
+                Valor = RealizarCalculo(Valor)
+                Tabla_Agregar(Auxiliar, Operacion)
+                Operacion = "+"
+            ElseIf Asc(Valor.KeyChar) = 45 Then     'Operación "-"
+                If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                    Valor.KeyChar = ""
+                    Return Valor
+                End If
+                If OpeAct Then
+                    Operacion = "-"
+                    Valor.KeyChar = ""
+                    Return Valor
+                ElseIf Operacion = "0" Then
+                    Operacion = "-"
+                End If
+                Valor = RealizarCalculo(Valor)
+                Tabla_Agregar(Auxiliar, Operacion)
+                Operacion = "-"
+            ElseIf Asc(Valor.KeyChar) = 47 Then     'Operación "/"
+                If tbResultado.Text = "" Or tbResultado.Text = "." Then
+                    Valor.KeyChar = ""
+                    Return Valor
+                End If
+                If OpeAct Then
+                    Operacion = "/"
+                    Valor.KeyChar = ""
+                    Return Valor
+                ElseIf Operacion = "0" Then
+                    Operacion = "/"
+                End If
+                Valor = RealizarCalculo(Valor)
+                Tabla_Agregar(Auxiliar, Operacion)
+                Operacion = "/"
+            ElseIf Asc(Valor.KeyChar) = 46 Then     'Punto
 
-        ElseIf OpeAct Then
-            tbResultado.Text = ""
-            lNotificacion.Text = ""
-            If OpeEnd And dgvHistorial.Rows.Count > 3 Then
-                Nueva_operación()
-                Tabla_Limpiar()
-            End If
-            OpeAct = False
-            Punto = False
-            OpeEnd = False
-        Else
-            OpeEnd = False
-            OpeAct = False
-        End If
-        'tbResultado.Text = Format(Val(tbResultado.Text), “##,##0.00”).ToString
+                If InStr(tbResultado.Text, ".") Then
+                    Valor.KeyChar = ""
+                    Return Valor
+                Else
+                    If OpeAct Then
+                        tbResultado.Text = ""
+                        OpeAct = False
+                    End If
+                End If
 
-        If Not Operacion = "0" Then
-            lNotificacion.Text = Operacion
-        End If
+            ElseIf OpeAct Then
+                tbResultado.Text = ""
+                lNotificacion.Text = ""
+                If OpeEnd And dgvHistorial.Rows.Count > 3 Then
+                    Nueva_operación()
+                    Tabla_Limpiar()
+                End If
+                OpeAct = False
+                Punto = False
+                OpeEnd = False
+            Else
+                OpeEnd = False
+                OpeAct = False
+            End If
+            'tbResultado.Text = Format(Val(tbResultado.Text), “##,##0.00”).ToString
+
+            If Not Operacion = "0" Then
+                lNotificacion.Text = Operacion
+            End If
+        Catch ex As Exception
+
+        End Try
 
         Return Valor
     End Function
@@ -248,27 +253,36 @@ Public Class Sumadora
 
     Private Sub MoverCursor(ByVal Valor As String)
         Dim e As New KeyPressEventArgs("")
-        e.KeyChar = Valor
-        e = ValidadorNumero(e)
-        If tbResultado.TextLength < 10 And Not e.KeyChar = "" Then
-            tbResultado.Text = tbResultado.Text + e.KeyChar
-        End If
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        Try
+            e.KeyChar = Valor
+            e = ValidadorNumero(e)
+            If tbResultado.TextLength < 10 And Not e.KeyChar = "" Then
+                tbResultado.Text = tbResultado.Text + e.KeyChar
+            End If
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 #End Region
 #Region "Operaciones con la Tabla"
     Private Sub Tabla_Agregar(ByVal Valor As Decimal, ByVal Ope As String)
-        NumFilas += 1
-        dgvHistorial.Rows.Add()
-        dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
-        dgvHistorial(0, NumFilas - 2).Value = "--------------------"
-        dgvHistorial(0, NumFilas - 3).Value = Format(Valor, "##,##0.00")
-        dgvHistorial(1, NumFilas - 1).Value = "0"
-        dgvHistorial(1, NumFilas - 2).Value = "0"
-        dgvHistorial(1, NumFilas - 3).Value = Ope
-        'dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
-        On Error Resume Next
+        Try
+            NumFilas += 1
+            dgvHistorial.Rows.Add()
+            dgvHistorial(0, NumFilas - 1).Value = Format(Total, "##,##0.00")
+            dgvHistorial(0, NumFilas - 2).Value = "--------------------"
+            dgvHistorial(0, NumFilas - 3).Value = Format(Valor, "##,##0.00")
+            dgvHistorial(1, NumFilas - 1).Value = "0"
+            dgvHistorial(1, NumFilas - 2).Value = "0"
+            dgvHistorial(1, NumFilas - 3).Value = Ope
+            'dgvHistorial.FirstDisplayedCell = dgvHistorial(0, NumFilas - 1)
+        Catch ex As Exception
+
+        End Try
+
         MostrarUltimo()
     End Sub
     Private Sub Tabla_Limpiar()
@@ -400,56 +414,81 @@ Public Class Sumadora
         ValidadorNumero(e)
     End Sub
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        dgvHistorial.Rows.Add(2)
-        dgvHistorial(0, 0).Value = "0.00"
-        dgvHistorial(0, 1).Value = "--------------------"
-        dgvHistorial(0, 2).Value = "0.00"
-        dgvHistorial.ClearSelection()
-        tbResultado.Focus()
+        Try
+            dgvHistorial.Rows.Add(2)
+            dgvHistorial(0, 0).Value = "0.00"
+            dgvHistorial(0, 1).Value = "--------------------"
+            dgvHistorial(0, 2).Value = "0.00"
+            dgvHistorial.ClearSelection()
+            tbResultado.Focus()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Nueva_operación()
-        Tabla_Limpiar()
-        tbResultado.Text = ""
-        lNotificacion.Text = ""
-        tbResultado.Focus()
+        Try
+            Nueva_operación()
+            Tabla_Limpiar()
+            tbResultado.Text = ""
+            lNotificacion.Text = ""
+            tbResultado.Focus()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
 
     Private Sub dgvHistorial_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvHistorial.CellEndEdit
-        Tabla_Calcular()
-        'MostrarUltimo()
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        Try
+            Tabla_Calcular()
+            'MostrarUltimo()
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 #End Region
 #Region "Impresora"
     Private Sub Imprimir()
-        Dim Ticket As New cImpresoraTickets
-        Ticket.Tabla = dgvHistorial
-        If cbLogo.Checked Then
-            Ticket.Logotipo = Image.FromFile("Logo.jpeg")
-        End If
+        Try
+            Dim Ticket As New cImpresoraTickets
 
-        If cbFecha.Checked Then
-            Ticket.Fecha = Format(Date.Now, "dd/MM/yyyy").ToString
-        End If
-        If cbNombre.Checked And Not tbEmpresa.Text = "" Then
-            Ticket.Empresa = tbEmpresa.Text
-        End If
+            Ticket.Tabla = dgvHistorial
+            If cbLogo.Checked Then
+                Ticket.Logotipo = Image.FromFile("Logo.jpeg")
+            End If
 
-        If Not lNotificacion.Text = "" And Not lNotificacion.Text = "." Then
-            Ticket.Operacion = lNotificacion.Text
-        End If
+            If cbFecha.Checked Then
+                Ticket.Fecha = Format(Date.Now, "dd/MM/yyyy").ToString
+            End If
+            If cbNombre.Checked And Not tbEmpresa.Text = "" Then
+                Ticket.Empresa = tbEmpresa.Text
+            End If
 
-        Ticket.ImprimirTicket()
+            If Not lNotificacion.Text = "" And Not lNotificacion.Text = "." Then
+                Ticket.Operacion = lNotificacion.Text
+            End If
+
+            Ticket.ImprimirTicket()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Try
+            Imprimir()
+            tbResultado.SelectionStart = tbResultado.TextLength
+            tbResultado.Focus()
+        Catch ex As Exception
 
-        Imprimir()
-        tbResultado.SelectionStart = tbResultado.TextLength
-        tbResultado.Focus()
+        End Try
+
     End Sub
 
 #End Region
@@ -497,6 +536,18 @@ Public Class Sumadora
     Private Sub dgvHistorial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles dgvHistorial.KeyPress
         If e.KeyChar = "e" Then
             MsgBox("Letra e")
+        End If
+    End Sub
+
+    Private Sub Sumadora_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        Dim fecha As Date = Format(CDate("30/01/2020"), "dd/MM/yyyy")
+
+        If Today.Date.ToShortDateString <= fecha Then
+            MsgBox("Versión de prueba")
+        Else
+            MsgBox("Licencia caducada!")
+            End
         End If
     End Sub
 End Class
