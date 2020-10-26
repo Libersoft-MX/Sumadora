@@ -29,9 +29,11 @@ Partial Class Sumadora
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lNotificacion = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.dgvHistorial = New System.Windows.Forms.DataGridView()
         Me.Datos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ope = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.tbEmpresa = New System.Windows.Forms.TextBox()
@@ -62,13 +64,11 @@ Partial Class Sumadora
         Me.cb7 = New System.Windows.Forms.Button()
         Me.tbResultado = New System.Windows.Forms.TextBox()
         Me.Tabla = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -107,6 +107,17 @@ Partial Class Sumadora
         Me.Label1.Text = "Historial"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Sumadora.My.Resources.Resources.Logo_Piramide
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 9)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(196, 102)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
+        '
         'dgvHistorial
         '
         Me.dgvHistorial.BackgroundColor = System.Drawing.Color.White
@@ -134,6 +145,7 @@ Partial Class Sumadora
         Me.dgvHistorial.GridColor = System.Drawing.Color.White
         Me.dgvHistorial.Location = New System.Drawing.Point(-42, 127)
         Me.dgvHistorial.Name = "dgvHistorial"
+        Me.dgvHistorial.RowHeadersWidth = 62
         Me.dgvHistorial.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvHistorial.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -144,14 +156,27 @@ Partial Class Sumadora
         'Datos
         '
         Me.Datos.HeaderText = "Historial"
+        Me.Datos.MinimumWidth = 8
         Me.Datos.Name = "Datos"
         Me.Datos.Width = 175
         '
         'ope
         '
         Me.ope.HeaderText = "Operación"
+        Me.ope.MinimumWidth = 8
         Me.ope.Name = "ope"
         Me.ope.Visible = False
+        Me.ope.Width = 150
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Image = Global.Sumadora.My.Resources.Resources.print
+        Me.Button3.Location = New System.Drawing.Point(63, 470)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(82, 39)
+        Me.Button3.TabIndex = 4
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Panel2
         '
@@ -205,7 +230,7 @@ Partial Class Sumadora
         Me.tbEmpresa.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbEmpresa.Location = New System.Drawing.Point(6, 22)
         Me.tbEmpresa.Name = "tbEmpresa"
-        Me.tbEmpresa.Size = New System.Drawing.Size(124, 29)
+        Me.tbEmpresa.Size = New System.Drawing.Size(124, 40)
         Me.tbEmpresa.TabIndex = 44
         Me.Tabla.SetToolTip(Me.tbEmpresa, "Puede editar presionando la tecla ""Espacio""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Para continuar operando presione ""In" &
         "tro""")
@@ -218,7 +243,7 @@ Partial Class Sumadora
         Me.cbNombre.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbNombre.Location = New System.Drawing.Point(136, 27)
         Me.cbNombre.Name = "cbNombre"
-        Me.cbNombre.Size = New System.Drawing.Size(83, 22)
+        Me.cbNombre.Size = New System.Drawing.Size(123, 31)
         Me.cbNombre.TabIndex = 43
         Me.cbNombre.Text = "Nombre"
         Me.cbNombre.UseVisualStyleBackColor = True
@@ -231,7 +256,7 @@ Partial Class Sumadora
         Me.cbFecha.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbFecha.Location = New System.Drawing.Point(225, 27)
         Me.cbFecha.Name = "cbFecha"
-        Me.cbFecha.Size = New System.Drawing.Size(71, 22)
+        Me.cbFecha.Size = New System.Drawing.Size(105, 31)
         Me.cbFecha.TabIndex = 42
         Me.cbFecha.Text = "Fecha"
         Me.cbFecha.UseVisualStyleBackColor = True
@@ -244,7 +269,7 @@ Partial Class Sumadora
         Me.cbLogo.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbLogo.Location = New System.Drawing.Point(304, 27)
         Me.cbLogo.Name = "cbLogo"
-        Me.cbLogo.Size = New System.Drawing.Size(63, 22)
+        Me.cbLogo.Size = New System.Drawing.Size(91, 31)
         Me.cbLogo.TabIndex = 41
         Me.cbLogo.Text = "Logo"
         Me.cbLogo.UseVisualStyleBackColor = True
@@ -257,7 +282,7 @@ Partial Class Sumadora
         Me.cbPrint.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbPrint.Location = New System.Drawing.Point(374, 27)
         Me.cbPrint.Name = "cbPrint"
-        Me.cbPrint.Size = New System.Drawing.Size(59, 22)
+        Me.cbPrint.Size = New System.Drawing.Size(88, 31)
         Me.cbPrint.TabIndex = 40
         Me.cbPrint.Text = "Print"
         Me.cbPrint.UseVisualStyleBackColor = True
@@ -494,7 +519,7 @@ Partial Class Sumadora
         Me.tbResultado.MaxLength = 10
         Me.tbResultado.Name = "tbResultado"
         Me.tbResultado.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tbResultado.Size = New System.Drawing.Size(439, 63)
+        Me.tbResultado.Size = New System.Drawing.Size(439, 90)
         Me.tbResultado.TabIndex = 18
         Me.tbResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -505,30 +530,9 @@ Partial Class Sumadora
         Me.Tabla.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.Tabla.ToolTipTitle = "Editar"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Sumadora.My.Resources.Resources.logo2
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 9)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(196, 102)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Image = Global.Sumadora.My.Resources.Resources.print
-        Me.Button3.Location = New System.Drawing.Point(63, 470)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(82, 39)
-        Me.Button3.TabIndex = 4
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Sumadora
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(38.0!, 72.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(56.0!, 107.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
         Me.ClientSize = New System.Drawing.Size(689, 520)
@@ -543,12 +547,12 @@ Partial Class Sumadora
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GEP Calculator V.2.1 by www.xcoru.com"
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvHistorial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -541,10 +541,10 @@ Public Class Sumadora
 
     Private Sub Sumadora_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Dim fecha As Date = Format(CDate("30/01/2020"), "dd/MM/yyyy")
+        Dim fecha As Date = Format(CDate("30/01/2030"), "dd/MM/yyyy")
 
         If Today.Date.ToShortDateString <= fecha Then
-            MsgBox("Versión de prueba")
+            'MsgBox("Versión de prueba")
         Else
             MsgBox("Licencia caducada!")
             End
